@@ -14,7 +14,7 @@ const SignInWithGoogleButton = () => {
   };
 
   return (
-    <button onClick={signInWithGoogle}>
+    <button onClick={signInWithGoogle} className='border-2 border-black px-2 py-1'>
       Sign in with Google
     </button>
   );
