@@ -12,6 +12,7 @@ const SignInWithGoogleButton = () => {
     try {
       await signInWithPopup(auth, googleProvider);
       navigate('/profile');
+      console.log(auth.currentUser?.uid)
     } catch (error) {
       console.error('Google Sign-In Error:', error);
     }

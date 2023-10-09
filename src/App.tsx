@@ -5,8 +5,7 @@ import Profile from './components/Pages/Profile';
 import Navbar from './components/Layouts/Navbar';
 
 import { initializeApp } from "firebase/app";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
     apiKey: "AIzaSyDr3WFxCxZQKms1Jy-hGjW2x6B7oPiDNAw",
@@ -17,7 +16,8 @@ const firebaseConfig = {
     appId: "1:105785457128:web:1027db414ae82d6e430c5d"
 };
 
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
 
 function App() {
   return (
