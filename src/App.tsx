@@ -1,4 +1,9 @@
-import UserStatus from './components/Auth/UserStatus';
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Home from './components/Pages/Home';
+import Profile from './components/Pages/Profile';
+import Navbar from './components/Layouts/Navbar';
+
 import { initializeApp } from "firebase/app";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -16,10 +21,15 @@ initializeApp(firebaseConfig);
 
 function App() {
   return (
-    <div>
-      <h1 className='text-3xl font-bold'>WeMeet</h1>
-      <UserStatus />
-    </div>
+    <Router>
+      <div>
+        <Navbar />
+        <Routes>
+          <Route path="/" Component={Home}/>
+          <Route path="/profile" Component={Profile}/>
+        </Routes>
+      </div>
+    </Router>
   )
 }
 
