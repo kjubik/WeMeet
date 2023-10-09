@@ -2,6 +2,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './components/Pages/Home';
 import Profile from './components/Pages/Profile';
+import UsernameForm from './components/Pages/UsernameForm';
 import Navbar from './components/Layouts/Navbar';
 
 import { initializeApp } from "firebase/app";
@@ -27,6 +28,7 @@ function App() {
         <Routes>
           <Route path="/" Component={Home}/>
           <Route path="/profile" Component={Profile}/>
+          <Route path='/welcome' Component={UsernameForm} />
         </Routes>
       </div>
     </Router>
