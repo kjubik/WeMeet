@@ -1,5 +1,6 @@
 import { db } from "../../App";
-import { collection, doc, getDoc, setDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, setDoc } from 'firebase/firestore';
+import { Meeting } from "./firestoreTypes";
 
 export const doesDocumentWithIdExist = async (collectionName: string, documentId: string) => {
   try {
@@ -24,6 +25,17 @@ export const addDocToCollection = async (collectionName: string, documentId: str
     console.log(`Document added to ${collectionName} with ID ${documentId}`);
   } catch (error) {
     console.error(`Error adding document to collection '${collectionName}':`, error);
+    throw error;
+  }
+};
+
+export const createMeeting = async (data: Meeting) => {
+  try {
+    const documentRef = collection(db, 'meetings');
+    await addDoc(documentRef, data);
+    console.log(`Meeting created with Auto-ID`);
+  } catch (error) {
+    console.error(`Error adding document to collection meetings:`, error);
     throw error;
   }
 };
