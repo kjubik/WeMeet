@@ -31,7 +31,6 @@ const UsernameForm: FC = () => {
         await addDocToCollection('users', currentUser.uid, userData);
         navigate('/profile')
       } catch (error) {
-        // Handle error
         console.error('Error adding document: ', error);
       }
     }
