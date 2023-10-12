@@ -1,5 +1,5 @@
 import { db } from "../../App";
-import { addDoc, collection, doc, getDoc, setDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, getDoc, getDocs, setDoc, query, where } from 'firebase/firestore';
 import { Meeting } from "./firestoreTypes";
 
 export const doesDocumentWithIdExist = async (collectionName: string, documentId: string) => {
@@ -39,3 +39,21 @@ export const createMeeting = async (data: Meeting) => {
     throw error;
   }
 };
+
+export const viewOwnedMeetings = async (userID: string) => {
+  try {
+    const docRef = collection(db, 'meetings');
+    const q = query(docRef, where('owner', '==', userID));
+    const querySnapshot = await getDocs(q);
+
+    const documents: any[] = [];
+    querySnapshot.forEach((doc) => {
+      documents.push({ id:doc.id, ...doc.data()})
+    })
+
+    return documents;
+  } catch (error) {
+    console.error('Error getting documents:', error);
+    throw error;
+  }
+}

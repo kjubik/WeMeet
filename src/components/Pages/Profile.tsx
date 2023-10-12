@@ -1,6 +1,6 @@
-import React, { FC, useState } from 'react';
+import React, { FC, useState, useEffect } from 'react';
 import { Meeting, Timeframe } from "../Database/firestoreTypes";
-import { createMeeting } from "../Database/firestoreUtils";
+import { createMeeting, viewOwnedMeetings } from "../Database/firestoreUtils";
 import { Timestamp } from 'firebase/firestore';
 import { auth } from '../../App';
 
@@ -33,6 +33,22 @@ function Profile() {
         createMeeting(meetingData);
     };
 
+    const [ownedMeetings, setOwnedMeetings] = useState<any>([]);
+
+    useEffect(() => {
+        async function fetchDocuments() {
+            try {
+                const ownedMeetings = await viewOwnedMeetings(uid);
+
+                setOwnedMeetings(ownedMeetings);
+            } catch (error) {
+                console.error('Error fetching documents:', error);
+            }
+        }
+
+        fetchDocuments();
+    }, []);
+
     return (
         <div>
             <h1 className="font-bold">Profile Page</h1>
@@ -48,6 +64,11 @@ function Profile() {
                     Create meeting
                 </button>
             </form>
+            <ul>
+                {ownedMeetings.map((document: any) => (
+                    <li>{document.name}</li>
+                ))}
+            </ul>
         </div>
     );
 }
