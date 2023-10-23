@@ -3,8 +3,11 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 function SignIn() {
-
+    
     const navigate = useNavigate();
+
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
@@ -20,9 +23,6 @@ function SignIn() {
             console.log("Failed to sign in: ", error);
         });
     }
-
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
 
     const emailSignIn = () => {
         signInWithEmailAndPassword(auth, email, password)

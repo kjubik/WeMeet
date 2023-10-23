@@ -24,7 +24,8 @@ function Regitser() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const emailRegister = async () => {
+
+    const emailRegister = () => {
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             console.log("Account created: ", userCredential.user)
