@@ -38,16 +38,16 @@ function Regitser() {
 
     return (
         <div className="m-2 flex flex-col items-start gap-4">
-            <h1 className="font-semibold text-xl">Create account on WeMeet</h1>
-            <button onClick={signInWithGoogle} className="text-blue-500 font-semibold">Register with Google</button>
+            <h1 className="font-semibold text-xl">Create account</h1>
+            <button onClick={signInWithGoogle} className="text-white bg-blue-500 font-semibold rounded px-3 py-2">Sign In with Google</button>
             <div className="flex flex-col items-start gap-2">
                 <label htmlFor="email">Email</label>
-                <input type="text" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <input type="text" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} className="outline outline-1 outline-slate-500 rounded px-2 py-1" />
                 <label htmlFor="password">Password</label>
-                <input type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <input type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="outline outline-1 outline-slate-500 rounded px-2 py-1" />
                 <button type="button" onClick={emailRegister} className="text-blue-500 font-semibold">Create account</button>
             </div>
-            <p>Already have an account? <a href="/signin" className="text-blue-500 font-semibold">Sign In</a></p>
+            <p className="text-slate-500">Already have an account? <a href="/signin" className="text-blue-500 font-semibold">Sign In</a></p>
         </div>
     )
 }
