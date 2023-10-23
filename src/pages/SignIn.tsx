@@ -8,25 +8,21 @@ function SignIn() {
 
     const navigate = useNavigate();
 
-    const signIn = () => {  
-        signInWithPopup(auth, provider)
+    const signIn = () => {
+    signInWithPopup(auth, provider)
         .then((result) => {
+            // This gives you a Google Access Token. You can use it to access the Google API.
             const credential = GoogleAuthProvider.credentialFromResult(result);
-            const token = credential?.accessToken;
-            const user = result.user;
-            navigate("/dashboard");
+            console.log('Token:', credential?.accessToken, 'User:', result?.user);
+            navigate('/dashboard');
         }).catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            const email = error.customData.email;
-            const credential = GoogleAuthProvider.credentialFromError(error);
+            console.log("Failed to sign in: ", error);
         });
     }
 
-    console.log(auth);
     return (
         <div>
-            <h2>Sign In</h2>
+            <h2>Sign In Page</h2>
             <button onClick={signIn}>Sign In with Google</button>
         </div>
     )
