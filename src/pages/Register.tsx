@@ -15,7 +15,7 @@ function Regitser() {
             // This gives you a Google Access Token. You can use it to access the Google API.
             const credential = GoogleAuthProvider.credentialFromResult(result);
             console.log('Token:', credential?.accessToken, 'User:', result?.user);
-            navigate('/dashboard');
+            navigate('/profile');
         }).catch((error) => {
             console.log("Failed to sign in: ", error);
         });
@@ -29,7 +29,7 @@ function Regitser() {
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             console.log("Account created: ", userCredential.user)
-            navigate('/dashboard');
+            navigate('/profile');
           })
           .catch((error) => {
             console.log("Failed to create account: ", error);
