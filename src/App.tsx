@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { auth, db } from "./firebase.ts";
+import SignIn from "./pages/SignIn.tsx";
 
 function App() {
   console.log(auth);
@@ -7,7 +8,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<h1>Home</h1>} />
+        <Route path="/" element={<SignIn/>} />
+        <Route path="/dashboard" element={<h1>Dashboard</h1>} />
       </Routes>
     </BrowserRouter>
   )
