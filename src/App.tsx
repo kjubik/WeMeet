@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { auth, db } from "./firebase.ts";
+import { auth, db } from "./firebase/firebaseConfig.ts";
 import SignIn from "./pages/SignIn.tsx";
 import Regitser from "./pages/Register.tsx";
 import Profile from "./pages/Profile.tsx";

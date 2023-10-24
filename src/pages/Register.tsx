@@ -1,6 +1,7 @@
 import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { createUser } from "../firebase/firestore";
 
 function Regitser() {
 
@@ -15,6 +16,7 @@ function Regitser() {
             // This gives you a Google Access Token. You can use it to access the Google API.
             const credential = GoogleAuthProvider.credentialFromResult(result);
             console.log('Token:', credential?.accessToken, 'User:', result?.user);
+            createUser({id: auth.currentUser?.uid || null, email: auth.currentUser?.email || null, events: []})
             navigate('/profile');
         }).catch((error) => {
             console.log("Failed to sign in: ", error);
@@ -29,6 +31,7 @@ function Regitser() {
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             console.log("Account created: ", userCredential.user)
+            createUser({id: userCredential.user.uid, email: userCredential.user.email, events: []})
             navigate('/profile');
           })
           .catch((error) => {
