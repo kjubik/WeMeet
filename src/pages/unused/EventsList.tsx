@@ -1,12 +1,11 @@
-import { useEffect, useState } from "react"; // 1. Import React hooks
-import { getEvents } from "../firebase/firestore"; // 2. Import getEvents function
-import { Event } from "../firebase/types";
+import { useEffect, useState } from "react";
+import { getEvents } from "../../firebase/firestore";
+import { Event } from "../../firebase/types";
 
 function EventsList() {
-    const [events, setEvents] = useState<Event[]>([]); // 3. Initialize events state
+    const [events, setEvents] = useState<Event[]>([]);
 
     useEffect(() => {
-        // 4. Fetch and set events when the component mounts
         const fetchEvents = async () => {
             try {
                 setEvents(await getEvents());

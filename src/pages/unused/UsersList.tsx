@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { getUsers } from "../firebase/firestore";
-import { User } from "../firebase/types";
+import { getUsers } from "../../firebase/firestore";
+import { User } from "../../firebase/types";
 
 function UsersList() {
     const [users, setUsers] = useState<User[]>([]);
