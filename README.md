@@ -13,7 +13,7 @@ To run WeMeet locally, install dependencies and run the dev server:
 
 Before using WeMeet, you'll need to set up your Firebase configuration. Create a .env file in the project root with your Firebase project credentials. Ensure that Firebase Authentication and Firestore are enabled in your Firebase project.
 
-Example .env file:
+Create your .env file in the following format:
 
     REACT_APP_FIREBASE_API_KEY=your-api-key
     REACT_APP_FIREBASE_AUTH_DOMAIN=your-auth-domain
@@ -33,3 +33,5 @@ Currently working on delivering a minimal viable product for showcasing basic we
 ## Support ❔
 
 For support or inquiries, please write to wojt.kubicki@gmail.com.
+
+[![My Skills](https://skillicons.dev/icons?i=ts,react,vite,firebase,tailwind,figma&theme=dark)](https://skillicons.dev)
