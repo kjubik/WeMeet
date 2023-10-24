@@ -3,6 +3,7 @@ import { auth, db } from "./firebase/firebaseConfig.ts";
 import SignIn from "./pages/SignIn.tsx";
 import Regitser from "./pages/Register.tsx";
 import Profile from "./pages/Profile.tsx";
+import ReleaseNotes from "./pages/ReleaseNotes.tsx";
 
 function App() {
   console.log(auth);
@@ -15,6 +16,7 @@ function App() {
             <li><a href="/signin">Sign In</a></li>
             <li><a href="/register">Create Account</a></li>
             <li><a href="/profile">Profile</a></li>
+            <li><a href="release-notes">Release Notes</a></li>
           </ul>
         </nav>
         <main className="p-4">
@@ -24,6 +26,7 @@ function App() {
             <Route path="/signin" element={<SignIn/>} />
             <Route path="/register" element={<Regitser/>} />
             <Route path="/profile" element={<Profile/>} />
+            <Route path="release-notes" element={<ReleaseNotes/>}/>
           </Routes>
         </BrowserRouter>
         </main>
