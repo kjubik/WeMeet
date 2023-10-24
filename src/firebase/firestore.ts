@@ -7,6 +7,10 @@ export const getUsers = async (): Promise<User[]> => {
   return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as User));
 }
 
+export const createUser = async (user: User) => {
+  await setDoc(doc(db, "users", user.id), {name: user.name, email: user.email});
+}
+
 export const getEvents = async (): Promise<Event[]> => {
   const querySnapshot = await getDocs(collection(db, "events"));
   return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as Event));
@@ -14,8 +18,4 @@ export const getEvents = async (): Promise<Event[]> => {
 
 export const createEvent = async (event: Event) => {
   await setDoc(doc(db, "events"), event);
-}
-
-export const createUser = async (user: User) => {
-  await setDoc(doc(db, "users", user.id), {name: user.name, email: user.email});
 }
