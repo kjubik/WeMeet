@@ -1,39 +1,39 @@
-
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './components/Pages/Home';
-import Profile from './components/Pages/Profile';
-import UsernameForm from './components/Pages/UsernameForm';
-import Navbar from './components/Layouts/Navbar';
-
-import { initializeApp } from "firebase/app";
-import { getFirestore } from 'firebase/firestore';
-import { getAuth } from 'firebase/auth';
-
-const firebaseConfig = {
-    apiKey: "AIzaSyDr3WFxCxZQKms1Jy-hGjW2x6B7oPiDNAw",
-    authDomain: "wemeet-fd684.firebaseapp.com",
-    projectId: "wemeet-fd684",
-    storageBucket: "wemeet-fd684.appspot.com",
-    messagingSenderId: "105785457128",
-    appId: "1:105785457128:web:1027db414ae82d6e430c5d"
-};
-
-const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
-export const db = getFirestore(app);
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { auth, db } from "./firebase/firebaseConfig.ts";
+import SignIn from "./pages/SignIn.tsx";
+import Regitser from "./pages/Register.tsx";
+import Profile from "./pages/Profile.tsx";
+import EventsList from "./pages/EventsList.tsx";
+import UsersList from "./pages/UsersList.tsx";
 
 function App() {
+  console.log(auth);
+  console.log(db);
   return (
-    <Router>
-      <div>
-        <Navbar />
-        <Routes>
-          <Route path="/" Component={Home}/>
-          <Route path="/profile" Component={Profile}/>
-          <Route path='/welcome' Component={UsernameForm} />
-        </Routes>
-      </div>
-    </Router>
+    <div>
+        <nav>
+          <ul className="p-2 bg-slate-200 flex gap-4">
+            <li><a href="/">Home</a></li>
+            <li><a href="/signin">Sign In</a></li>
+            <li><a href="/register">Create Account</a></li>
+            <li><a href="/profile">Profile</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="/users">Users</a></li>
+          </ul>
+        </nav>
+        <main className="p-4">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<div><a href="/signin">Sign In</a><br/><a href="/register">Create account</a></div>} />
+            <Route path="/signin" element={<SignIn/>} />
+            <Route path="/register" element={<Regitser/>} />
+            <Route path="/profile" element={<Profile/>} />
+            <Route path="/events" element={<EventsList/>} />
+            <Route path="/users" element={<UsersList/>} />
+          </Routes>
+        </BrowserRouter>
+        </main>
+    </div>
   )
 }
 
