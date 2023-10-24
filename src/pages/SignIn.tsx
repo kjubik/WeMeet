@@ -1,10 +1,13 @@
-import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, setPersistence, browserLocalPersistence } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { createUser } from "../firebase/firestore";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import { User } from "../firebase/types";
+
+const auth = getAuth();
+await setPersistence(auth, browserLocalPersistence);
 
 function SignIn() {
     
@@ -42,15 +45,15 @@ function SignIn() {
         }
     };
 
-    const emailSignIn = () => {
+    const emailSignIn = async () => {
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            console.log("Signed in: ", userCredential.user)
-            navigate('/profile');
-          })
-          .catch((error) => {
-            console.log("Failed to sign in: ", error);
-          });
+                console.log("Signed in: ", userCredential.user)
+                navigate('/profile');
+            })
+            .catch((error) => {
+                console.log("Failed to sign in: ", error);
+            });
     }
     
     return (
