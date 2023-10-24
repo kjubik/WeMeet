@@ -4,6 +4,7 @@ import { useState } from "react";
 import { createUser } from "../firebase/firestore";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
+import { User } from "../firebase/types";
 
 function Regitser() {
 
@@ -21,7 +22,12 @@ function Regitser() {
             if (userDocSnapshot.exists()) {
                 console.log("User already exists in Firestore.");
             } else {
-                await createUser({id: auth.currentUser?.uid || '', email: auth.currentUser?.email || '', name: ''});
+                const newUser : User = {
+                    id: auth.currentUser.uid,
+                    email: auth.currentUser.email || '',
+                    name: auth.currentUser.displayName || '',
+                }
+                await createUser(newUser);
                 console.log("User created in Firestore.");
             }
             navigate('/profile');
