@@ -21,7 +21,7 @@ function UsersList() {
         <div>
             {users.map((user) => (
                 <div key={user.id}>
-                    <h2 className="font-semibold">{user.name}</h2>
+                    <h2 className="font-semibold">{user.email}</h2>
                 </div>
             ))}
         </div>

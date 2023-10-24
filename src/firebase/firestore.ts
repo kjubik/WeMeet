@@ -17,5 +17,5 @@ export const createEvent = async (event: Event) => {
 }
 
 export const createUser = async (user: User) => {
-  await setDoc(doc(db, "users"), user);
+  await setDoc(doc(db, "users", user.id), {name: user.name, email: user.email});
 }

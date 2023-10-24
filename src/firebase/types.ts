@@ -6,7 +6,7 @@ export interface User {
 }
 
 export interface Event {
-    id: string; // Document ID from the "event" collection
+    id: string;
     title: string;
     organizer: string; // User UID
 }

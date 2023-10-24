@@ -2,6 +2,8 @@ import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthPro
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { createUser } from "../firebase/firestore";
+import { getDoc, doc } from "firebase/firestore";
+import { db } from "../firebase/firebaseConfig";
 
 function Regitser() {
 
@@ -10,18 +12,26 @@ function Regitser() {
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
 
-    const signInWithGoogle = () => {
-        signInWithPopup(auth, provider)
-        .then((result) => {
-            // This gives you a Google Access Token. You can use it to access the Google API.
-            const credential = GoogleAuthProvider.credentialFromResult(result);
-            console.log('Token:', credential?.accessToken, 'User:', result?.user);
-            createUser({id: auth.currentUser?.uid || null, email: auth.currentUser?.email || null, events: []})
+    const signInWithGoogle = async () => {
+        try {
+            await signInWithPopup(auth, provider);
+            if (auth.currentUser) {
+            const userDocRef = doc(db, "users", auth.currentUser.uid);
+            const userDocSnapshot = await getDoc(userDocRef);
+            if (userDocSnapshot.exists()) {
+                console.log("User already exists in Firestore.");
+            } else {
+                await createUser({id: auth.currentUser?.uid || '', email: auth.currentUser?.email || '', name: ''});
+                console.log("User created in Firestore.");
+            }
             navigate('/profile');
-        }).catch((error) => {
-            console.log("Failed to sign in: ", error);
-        });
-    }
+            } else {
+            console.error("User is not authenticated or has no UID.");
+            }
+        } catch (error) {
+            console.error("Failed to sign in: ", error);
+        }
+    };
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -31,7 +41,7 @@ function Regitser() {
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             console.log("Account created: ", userCredential.user)
-            createUser({id: userCredential.user.uid, email: userCredential.user.email, events: []})
+            createUser({id: auth.currentUser?.uid || '', email: auth.currentUser?.email || '', name: ''})
             navigate('/profile');
           })
           .catch((error) => {
