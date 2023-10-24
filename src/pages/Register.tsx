@@ -1,10 +1,13 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, setPersistence, browserLocalPersistence } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { createUser } from "../firebase/firestore";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import { User } from "../firebase/types";
+
+const auth = getAuth();
+await setPersistence(auth, browserLocalPersistence);
 
 function Regitser() {
 
