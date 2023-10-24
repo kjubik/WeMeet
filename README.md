@@ -34,4 +34,6 @@ Currently working on delivering a minimal viable product for showcasing basic we
 
 For support or inquiries, please write to wojt.kubicki@gmail.com.
 
+## Tech Stack
+
 [![My Skills](https://skillicons.dev/icons?i=ts,react,vite,firebase,tailwind,figma&theme=dark)](https://skillicons.dev)
