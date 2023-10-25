@@ -4,7 +4,6 @@ import AuthObserver from '../firebase/authObserver.tsx';
 function Profile() {
 
     const auth = getAuth();
-    const currentUser = auth.currentUser;
 
     const handleLogout = () => {
         signOut(auth)
@@ -23,7 +22,10 @@ function Profile() {
             <AuthObserver>
                 {(user: any) => {
             if (user) {
-                return <p>Welcome, {user.displayName}!</p>;
+                return <div>
+                    <p>Linked email: {user.email}</p>
+                    <button onClick={handleLogout}>Sign out</button>
+                </div>;
             } else {
                 return <p>Please sign in.</p>;
             }
