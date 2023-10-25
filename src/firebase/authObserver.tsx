@@ -1,5 +1,4 @@
-// AuthObserver.js
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 function AuthObserver({ children: children }: { children: any }) {
@@ -11,7 +10,6 @@ function AuthObserver({ children: children }: { children: any }) {
       setUser(user);
     });
 
-    // Clean up the observer when the component unmounts
     return () => unsubscribe();
   }, []);
 
