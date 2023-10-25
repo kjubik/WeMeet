@@ -1,4 +1,5 @@
 import { getAuth, signOut } from "@firebase/auth";
+import AuthObserver from '../firebase/authObserver.tsx';
 
 function Profile() {
 
@@ -19,14 +20,15 @@ function Profile() {
     return (
         <div>
             <h1>My profile</h1>
-            {currentUser ? (
-                <div>
-                    <p>Logged in as: {currentUser.email}</p>
-                    <button onClick={handleLogout} className="text-white bg-blue-500 font-semibold rounded px-2 py-1 mt-2">Log out</button>
-                </div>
-            ) : (
-                <p>No user logged in</p>
-            )}
+            <AuthObserver>
+                {(user: any) => {
+            if (user) {
+                return <p>Welcome, {user.displayName}!</p>;
+            } else {
+                return <p>Please sign in.</p>;
+            }
+            }}
+            </AuthObserver>
         </div>
     );
 };

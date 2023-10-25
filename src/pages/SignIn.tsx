@@ -1,13 +1,10 @@
-import { getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider, setPersistence, browserLocalPersistence } from "firebase/auth";
+import { onAuthStateChanged, getAuth, signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createUser } from "../firebase/firestore";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import { User } from "../firebase/types";
-
-const auth = getAuth();
-await setPersistence(auth, browserLocalPersistence);
 
 function SignIn() {
     
@@ -15,6 +12,17 @@ function SignIn() {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            const userId = user?.uid;
+            console.log("User ID: ", userId);
+        });
+
+        return () => {
+            unsubscribe();
+        };
+    }, []);
 
     const auth = getAuth();
     const provider = new GoogleAuthProvider();

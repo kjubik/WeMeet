@@ -5,7 +5,7 @@ function ReleaseNotes() {
         {
             title: 'Logged out after changing subpage',
             description: "We've fixed logging out users after changing subpages. 🙌 You can now navigate between pages without any interruptions.",
-            date: '2023-10-25',
+            date: '2023-10-26',
             isBugFix: true,
         }
     ]
