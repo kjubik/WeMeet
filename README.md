@@ -26,10 +26,15 @@ To run WeMeet locally, install dependencies and run the dev server:
 
 WeMeet will offer advanced functionalities to streamline the process of coordinating meeting timeframes, making it easy for participants to vote on suitable dates and times. Currently working on delivering a minimal viable product for showcasing my web developement skills. Planning on further developement of custom advanced features and integrations with online meeting platforms (Google Meet, Zoom, MS Teams, etc.) and productivity apps (Google Calendar, Outlook, Google Drive, Dropbox, Google Maps).
 
-## Lessons learned 📖
+## Lessons Learned 📖
 
 In this section, I'll keep track of the most prominent things I've learned along the way while creating this web app. I would love it if WeMeet became a full-fledged web app with a stable user base, but my true motivation is to continue my journey to become a better developer. That's why I'm dedicating a part of this readme to jot down my insights.
 
+### Key Programming Concepts and Skills:
+
+- Authentication state observables
+- Implementing protected routes
+ 
 ### Make Small, Frequent Commits
 
 Consistent small commits are more effective than infrequent large ones. Avoid burnout by setting realistic goals and focusing on long-term progress.
