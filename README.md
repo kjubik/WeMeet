@@ -2,13 +2,6 @@
 
 WeMeet is a web application aimed at helping people coordinate dates and times for events or meetings. It's a versatile tool suitable for various scenarios, from coordinating group outings with friends to scheduling online business meetings.
 
-## Installation ⬇️
-
-To run WeMeet locally, install dependencies and run the dev server:
-
-    npm install
-    npm run dev
-
 ## Configuration 🛠️
 
 Before using WeMeet, you'll need to set up your Firebase configuration. Create a .env file in the project root with your Firebase project credentials. Ensure that Firebase Authentication and Firestore are enabled in your Firebase project.
@@ -22,17 +15,32 @@ Create your .env file in the following format:
     REACT_APP_FIREBASE_MESSAGING_SENDER_ID=your-sender-id
     REACT_APP_FIREBASE_APP_ID=your-app-id
 
+## Installation ⬇️
+
+To run WeMeet locally, install dependencies and run the dev server:
+
+    npm install
+    npm run dev
+
 ## Features ✨
 
-WeMeet offers advanced functionalities to streamline the process of coordinating meeting timeframes, making it easy for participants to vote on suitable dates and times.
+WeMeet will offer advanced functionalities to streamline the process of coordinating meeting timeframes, making it easy for participants to vote on suitable dates and times. Currently working on delivering a minimal viable product for showcasing my web developement skills. Planning on further developement of custom advanced features and integrations with online meeting platforms (Google Meet, Zoom, MS Teams, etc.) and productivity apps (Google Calendar, Outlook, Google Drive, Dropbox, Google Maps).
 
-## Roadmap 📌
+## Lessons learned 📖
 
-Currently working on delivering a minimal viable product for showcasing basic web developement skills. Planning on further developement of custom advanced features and integrations with online meeting platforms (Google Meet, Zoom, MS Teams) and calendars (Google Calendar, Outlook).
+In this section, I'll keep track of the most prominent things I've learned along the way while creating this web app. I would love it if WeMeet became a full-fledged web app with a stable user base, but my true motivation is to continue my journey to become a better developer. That's why I'm dedicating a part of this readme to jot down my insights.
+
+### Make Small, Frequent Commits
+
+Consistent small commits are more effective than infrequent large ones. Avoid burnout by setting realistic goals and focusing on long-term progress.
+
+### Write Clear Commit Messages
+
+Categorize commit messages as "feat," "chore," "bug," or "refactor" for easier review and better version control.
 
 ## Support ❔
 
-For support or inquiries, please write to wojt.kubicki@gmail.com.
+For support or inquiries, please write to me at wojt.kubicki@gmail.com.
 
 ## Tech Stack
 
