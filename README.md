@@ -43,6 +43,10 @@ Consistent small commits are more effective than infrequent large ones. Avoid bu
 
 Categorize commit messages as "feat," "chore," "bug," or "refactor" for easier review and better version control.
 
+### Think Twice, Code Once
+
+Quality of code takes priority over quantity of code. Thinking before typing helps to avoid backtracking through code and constant refactroing at later stages.
+
 ## Support ❔
 
 For support or inquiries, please write to me at wojt.kubicki@gmail.com.
