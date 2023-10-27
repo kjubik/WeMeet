@@ -1,18 +1,15 @@
 
 export interface User {
+    id: string;         // This should be the UID from Firebase Authentication
+    username: string;
     name: string;
     email: string;
-}
-
-export interface UserDocument extends User {
-    id: string; // This should be the UID from Firebase Authentication
+    events: string[];    // events in which the user is participating
 }
 
 export interface Event {
-    title: string;
-    organizer: string; // User UID
-}
-
-export interface EventDocument extends Event {
     id: string;
+    title: string;
+    organizer: string | undefined;
+    participants: (string | undefined)[];
 }
