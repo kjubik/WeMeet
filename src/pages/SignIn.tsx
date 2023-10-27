@@ -40,6 +40,8 @@ function SignIn() {
                     id: auth.currentUser.uid,
                     email: auth.currentUser.email || '',
                     name: auth.currentUser.displayName || '',
+                    username: auth.currentUser.displayName || '',
+                    events: [],
                 }
                 await createUser(newUser);
                 console.log("User created in Firestore.");
