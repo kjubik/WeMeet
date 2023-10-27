@@ -9,7 +9,10 @@ export interface UserDocument extends User {
 }
 
 export interface Event {
-    id: string;
     title: string;
     organizer: string; // User UID
+}
+
+export interface EventDocument extends Event {
+    id: string;
 }
