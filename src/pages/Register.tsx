@@ -5,6 +5,7 @@ import { createUser } from "../firebase/firestore";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import { User } from "../firebase/types";
+import { buttonPrimaryStyle, textInputStyle, buttonGhostStyle } from "../GlobalStyles";
 
 function Regitser() {
 
@@ -58,13 +59,13 @@ function Regitser() {
     return (
         <div className="m-2 flex flex-col items-start gap-4">
             <h1 className="font-semibold text-xl">Create account</h1>
-            <button onClick={signInWithGoogle} className="text-white bg-blue-500 font-semibold rounded px-3 py-2">Sign In with Google</button>
+            <button onClick={signInWithGoogle} className={buttonPrimaryStyle}>Sign In with Google</button>
             <div className="flex flex-col items-start gap-2">
                 <label htmlFor="email">Email</label>
-                <input type="text" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} className="outline outline-1 outline-slate-500 rounded px-2 py-1" />
+                <input type="text" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} className={textInputStyle} />
                 <label htmlFor="password">Password</label>
-                <input type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className="outline outline-1 outline-slate-500 rounded px-2 py-1" />
-                <button type="button" onClick={emailRegister} className="text-blue-500 font-semibold">Create account</button>
+                <input type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className={textInputStyle} />
+                <button type="button" onClick={emailRegister} className={buttonGhostStyle}>Create account</button>
             </div>
             <p className="text-slate-500">Already have an account? <a href="/signin" className="text-blue-500 font-semibold">Sign In</a></p>
         </div>
