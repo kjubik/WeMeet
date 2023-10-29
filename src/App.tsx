@@ -5,6 +5,7 @@ import Regitser from "./pages/Register.tsx";
 import Profile from "./pages/Profile.tsx";
 import ReleaseNotes from "./pages/ReleaseNotes.tsx";
 import ProtectedRoutes from "./ProtectedRoutes.tsx";
+import Events from "./pages/Events.tsx";
 
 function App() {
   console.log(auth);
@@ -17,6 +18,7 @@ function App() {
             <li><a href="/signin">Sign In</a></li>
             <li><a href="/register">Create Account</a></li>
             <li><a href="/profile">Profile</a></li>
+            <li><a href="/events">Events</a></li>
             <li><a href="release-notes">Release Notes</a></li>
           </ul>
         </nav>
@@ -28,6 +30,7 @@ function App() {
             <Route path="/register" element={<Regitser/>} />
             <Route element={<ProtectedRoutes />}>
               <Route path="/profile" element={<Profile/>} />
+              <Route path="/events" element={<Events/>}/>
               <Route path="release-notes" element={<ReleaseNotes/>}/>
             </Route>
           </Routes>
