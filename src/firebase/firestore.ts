@@ -16,6 +16,12 @@ export const getEvents = async (): Promise<Event[]> => {
   return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as Event));
 }
 
+export const getUserEvents = async (userId: string): Promise<Event[]> => {
+  const querySnapshot = await getDocs(collection(db, `users/${userId}/events`));
+  return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as Event));
+  
+}
+
 export const createEvent = async (event: Omit<Event, 'id'>, userId: string | undefined) => {
   try {
     await runTransaction(db, async (_transaction) => {
