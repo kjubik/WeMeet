@@ -55,6 +55,10 @@ Categorize commit messages as "feat," "chore," "bug," or "refactor" for easier r
 
 Quality of code takes priority over quantity of code. Thinking before typing helps to avoid backtracking through code and constant refactroing at later stages.
 
+### Don't Design Too Much
+
+The app UI doesn't need to be meticulously designed before diving into implementation. It's best to follow an agile approach by alternating between design and coding in short bursts, focusing on developing individual features. Inspired by the wisdom of Steve Schoger and Adam Wathan, authors of 'Refactoring UI'.
+
 ## Support ❔
 
 For support or inquiries, please write to me at wojt.kubicki@gmail.com.
