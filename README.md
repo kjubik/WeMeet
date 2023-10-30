@@ -26,6 +26,14 @@ To run WeMeet locally, install dependencies and run the dev server:
 
 WeMeet will offer advanced functionalities to streamline the process of coordinating meeting timeframes, making it easy for participants to vote on suitable dates and times. Currently working on delivering a minimal viable product for showcasing my web developement skills. Planning on further developement of custom advanced features and integrations with online meeting platforms (Google Meet, Zoom, MS Teams, etc.) and productivity apps (Google Calendar, Outlook, Google Drive, Dropbox, Google Maps).
 
+## Design 🦄
+
+[Figma Project](https://www.figma.com/file/8Dufdk0POagRwGEIEQ4o20/WeMeet?type=design&node-id=0%3A1&mode=design&t=K5RxwK0jLODBpYFR-1)
+
+[User Flows](https://www.figma.com/file/KRrDhfDh90Re3Xs7j1mQ9M/WeMeet-%7C-User-Flow?type=whiteboard&node-id=0%3A1&t=p4QcCdZMjhw1bpXc-1)
+
+
+
 ## Lessons Learned 📖
 
 In this section, I'll keep track of the most prominent things I've learned along the way while creating this web app. I would love it if WeMeet became a full-fledged web app with a stable user base, but my true motivation is to continue my journey to become a better developer. That's why I'm dedicating a part of this readme to jot down my insights.
