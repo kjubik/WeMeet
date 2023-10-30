@@ -6,6 +6,7 @@ import { getDoc, doc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import { User } from "../firebase/types";
 import { buttonPrimaryStyle, textInputStyle, buttonGhostStyle } from "../GlobalStyles";
+import PrimaryButton from "../components/PrimaryButton";
 
 function Regitser() {
 
@@ -59,7 +60,7 @@ function Regitser() {
     return (
         <div className="m-2 flex flex-col items-start gap-4">
             <h1 className="font-semibold text-xl">Create account</h1>
-            <button onClick={signInWithGoogle} className={buttonPrimaryStyle}>Sign In with Google</button>
+            <PrimaryButton buttonText="Sign In with Google" onClick={signInWithGoogle} />
             <div className="flex flex-col items-start gap-2">
                 <label htmlFor="email">Email</label>
                 <input type="text" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} className={textInputStyle} />

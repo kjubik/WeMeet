@@ -1,4 +1,5 @@
 import { getAuth, signOut } from "@firebase/auth";
+import PrimaryButton from "../components/PrimaryButton";
 
 function Profile() {
 
@@ -19,7 +20,7 @@ function Profile() {
     return (
         <div>
             <p>Linked email: {auth.currentUser?.email}</p>
-            <button onClick={handleLogout}>Sign out</button><br/>
+            <PrimaryButton buttonText="Sign out" onClick={handleLogout} />
         </div>
     );
 };

@@ -3,6 +3,7 @@ import { Event } from "../firebase/types";
 import { useEffect, useState } from "react";
 import { createEvent, getUserEvents } from "../firebase/firestore";
 import { buttonPrimaryStyle, textInputStyle } from "../GlobalStyles";
+import PrimaryButton from "../components/PrimaryButton";
 
 function Events() {
 
@@ -49,7 +50,7 @@ function Events() {
             <h2>Create new event</h2>
             <label htmlFor="title">Title</label><br/>
             <input type="text" name="title" id="title" value={title} onChange={(e) => setTitle(e.target.value)} className={textInputStyle}/><br/>
-            <button onClick={handleCreateEvent} className={buttonPrimaryStyle}>Create new event</button>
+            <PrimaryButton buttonText="Create new event" onClick={handleCreateEvent} />
         </div>
     );
 }
