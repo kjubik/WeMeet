@@ -5,8 +5,9 @@ import { createUser } from "../firebase/firestore";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import { User } from "../firebase/types";
-import { buttonGhostStyle, buttonPrimaryStyle, textInputStyle } from "../GlobalStyles";
+import { textInputStyle } from "../GlobalStyles";
 import PrimaryButton from "../components/PrimaryButton";
+import GhostButton from "../components/GhostButton";
 
 function SignIn() {
     
@@ -77,7 +78,7 @@ function SignIn() {
                 <input type="email" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} className={textInputStyle} />
                 <label htmlFor="password">Password</label>
                 <input type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className={textInputStyle} />
-                <button type="button" onClick={emailSignIn} className={buttonGhostStyle}>Sign In</button>
+                <GhostButton buttonText="Sign In" onClick={emailSignIn} />
             </div>
             <p className="text-slate-500">Don't have an account yet? <a href="/register" className="text-blue-500 font-semibold">Create account</a></p>
         </div>

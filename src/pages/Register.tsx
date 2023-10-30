@@ -5,8 +5,9 @@ import { createUser } from "../firebase/firestore";
 import { getDoc, doc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import { User } from "../firebase/types";
-import { buttonPrimaryStyle, textInputStyle, buttonGhostStyle } from "../GlobalStyles";
+import { textInputStyle } from "../GlobalStyles";
 import PrimaryButton from "../components/PrimaryButton";
+import GhostButton from "../components/GhostButton";
 
 function Regitser() {
 
@@ -26,8 +27,10 @@ function Regitser() {
             } else {
                 const newUser : User = {
                     id: auth.currentUser.uid,
-                    email: auth.currentUser.email || '',
+                    username: '',
                     name: auth.currentUser.displayName || '',
+                    email: auth.currentUser.email || '',
+                    events: [],
                 }
                 await createUser(newUser);
                 console.log("User created in Firestore.");
@@ -49,7 +52,7 @@ function Regitser() {
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             console.log("Account created: ", userCredential.user)
-            createUser({id: auth.currentUser?.uid || '', email: auth.currentUser?.email || '', name: ''})
+            createUser({id: auth.currentUser?.uid || '', username: '', name: '', email: auth.currentUser?.email || '', events: []})
             navigate('/profile');
           })
           .catch((error) => {
@@ -66,7 +69,7 @@ function Regitser() {
                 <input type="text" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} className={textInputStyle} />
                 <label htmlFor="password">Password</label>
                 <input type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className={textInputStyle} />
-                <button type="button" onClick={emailRegister} className={buttonGhostStyle}>Create account</button>
+                <GhostButton buttonText="Create account" onClick={emailRegister} />
             </div>
             <p className="text-slate-500">Already have an account? <a href="/signin" className="text-blue-500 font-semibold">Sign In</a></p>
         </div>
