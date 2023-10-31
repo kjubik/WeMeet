@@ -39,6 +39,7 @@ In this section, I'll keep track of the most prominent things I've learned along
 
 - Authentication state observables
 - Implementing protected routes
+- Modular development
  
 ### Make Small, Frequent Commits
 
