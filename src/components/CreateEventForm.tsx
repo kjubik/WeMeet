@@ -25,7 +25,7 @@ function CreateEventForm() {
         <div className="max-w-sm flex flex-col gap-8">
             <div className="flex flex-col gap-1 w-full">
                 <div className="flex flex-row-reverse">
-                    <button className="">Close</button>
+                    <button className="font-semibold text-neutral-400">Close</button>
                     <input type="text" value={title} onChange={(e) => setTitle(e.target.value)}
                     className="w-full text-2xl font-semibold outline-none" placeholder="Event title"/>
                 </div>
