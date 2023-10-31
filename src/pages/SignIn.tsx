@@ -2,7 +2,6 @@ import { onAuthStateChanged, getAuth, signInWithEmailAndPassword } from "firebas
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { textInputStyle } from "../GlobalStyles";
-import GhostButton from "../components/GhostButton";
 import GoogleAuthButton from "../components/GoogleAuthButton";
 import PrimaryButton from "../components/PrimaryButton";
 
