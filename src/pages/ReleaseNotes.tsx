@@ -3,6 +3,12 @@
 function ReleaseNotes() {
     const updates = [
         {
+            title: 'Added events creation',
+            description: "We've added a new subpage for managing your events. 🎉 More features for event creation and modification are planned for future releases.",
+            date: '2023-10-31',
+            isBugFix: false,
+        },
+        {
             title: 'Logged out after changing subpage',
             description: "We've fixed logging out users after changing subpages. 🙌 You can now navigate between pages without any interruptions.",
             date: '2023-10-26',
