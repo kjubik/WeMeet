@@ -28,10 +28,7 @@ WeMeet will offer advanced functionalities to streamline the process of coordina
 
 ## Design 🦄
 
-[Figma Project](https://www.figma.com/file/8Dufdk0POagRwGEIEQ4o20/WeMeet?type=design&node-id=0%3A1&mode=design&t=K5RxwK0jLODBpYFR-1)
-
-[User Flows](https://www.figma.com/file/KRrDhfDh90Re3Xs7j1mQ9M/WeMeet-%7C-User-Flow?type=whiteboard&node-id=0%3A1&t=p4QcCdZMjhw1bpXc-1)
-
+This project has been also an avenue for improving my design and planning skills. I used [Figma](https://www.figma.com/file/8Dufdk0POagRwGEIEQ4o20/WeMeet?type=design&node-id=0%3A1&mode=design&t=K5RxwK0jLODBpYFR-1) for component and UI design, and [FigJam](https://www.figma.com/file/KRrDhfDh90Re3Xs7j1mQ9M/WeMeet-%7C-User-Flow?type=whiteboard&node-id=0%3A1&t=p4QcCdZMjhw1bpXc-1) for strategic user flow planning. My goal was to craft a user experience that's both engaging and visually appealing.
 
 
 ## Lessons Learned 📖
@@ -42,6 +39,7 @@ In this section, I'll keep track of the most prominent things I've learned along
 
 - Authentication state observables
 - Implementing protected routes
+- Modular development
  
 ### Make Small, Frequent Commits
 
