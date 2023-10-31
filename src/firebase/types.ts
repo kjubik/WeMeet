@@ -10,6 +10,7 @@ export interface User {
 export interface Event {
     id: string;
     title: string;
+    description: string;
     organizer: string | undefined;
     participants: (string | undefined)[];
 }

@@ -1,0 +1,43 @@
+import { useState } from "react";
+import { Event } from "../firebase/types";
+import { getAuth } from "firebase/auth";
+import { createEvent } from "../firebase/firestore";
+
+function CreateEventForm() {
+
+    const auth = getAuth();
+
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+
+    const eventData: Omit<Event, "id"> = {
+        title,
+        description,
+        organizer: auth.currentUser?.uid,
+        participants: [auth.currentUser?.uid],
+    }
+
+    const handleAddEvent = () => {
+        createEvent(eventData, auth.currentUser?.uid);
+    }
+
+    return (
+        <div className="max-w-sm flex flex-col gap-8">
+            <div className="flex flex-col gap-1 w-full">
+                <div className="flex flex-row-reverse">
+                    <button className="">Close</button>
+                    <input type="text" value={title} onChange={(e) => setTitle(e.target.value)}
+                    className="w-full text-2xl font-semibold outline-none" placeholder="Event title"/>
+                </div>
+                <input type="text" value={description} onChange={(e) => setDescription(e.target.value)}
+                className="w-full text-md font-normal outline-none" placeholder="Add a description" />
+            </div>
+            <button onClick={handleAddEvent}
+            className="bg-black rounded-full text-white font-semibold py-2 text-md">
+                Create event
+            </button>
+        </div>
+    );
+}
+
+export default CreateEventForm;
