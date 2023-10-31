@@ -1,49 +1,16 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { createUser } from "../firebase/firestore";
-import { getDoc, doc } from "firebase/firestore";
-import { db } from "../firebase/firebaseConfig";
-import { User } from "../firebase/types";
 import { textInputStyle } from "../GlobalStyles";
-import PrimaryButton from "../components/PrimaryButton";
 import GhostButton from "../components/GhostButton";
+import GoogleAuthButton from "../components/GoogleAuthButton";
 
 function Regitser() {
 
     const navigate = useNavigate();
 
     const auth = getAuth();
-    const provider = new GoogleAuthProvider();
-
-    const signInWithGoogle = async () => {
-        try {
-            await signInWithPopup(auth, provider);
-            if (auth.currentUser) {
-            const userDocRef = doc(db, "users", auth.currentUser.uid);
-            const userDocSnapshot = await getDoc(userDocRef);
-            if (userDocSnapshot.exists()) {
-                console.log("User already exists in Firestore.");
-            } else {
-                const newUser : User = {
-                    id: auth.currentUser.uid,
-                    username: '',
-                    name: auth.currentUser.displayName || '',
-                    email: auth.currentUser.email || '',
-                    events: [],
-                }
-                await createUser(newUser);
-                console.log("User created in Firestore.");
-            }
-            navigate('/profile');
-            } else {
-            console.error("User is not authenticated or has no UID.");
-            }
-        } catch (error) {
-            console.error("Failed to sign in: ", error);
-        }
-    };
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
@@ -63,7 +30,7 @@ function Regitser() {
     return (
         <div className="m-2 flex flex-col items-start gap-4">
             <h1 className="font-semibold text-xl">Create account</h1>
-            <PrimaryButton buttonText="Sign In with Google" onClick={signInWithGoogle} />
+            <GoogleAuthButton/>
             <div className="flex flex-col items-start gap-2">
                 <label htmlFor="email">Email</label>
                 <input type="text" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} className={textInputStyle} />
