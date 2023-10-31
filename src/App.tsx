@@ -31,8 +31,8 @@ function App() {
             <Route element={<ProtectedRoutes />}>
               <Route path="/profile" element={<Profile/>} />
               <Route path="/events" element={<Events/>}/>
-              <Route path="release-notes" element={<ReleaseNotes/>}/>
             </Route>
+            <Route path="release-notes" element={<ReleaseNotes/>}/>
           </Routes>
         </BrowserRouter>
         </main>
