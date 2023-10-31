@@ -41,7 +41,7 @@ function Regitser() {
                 </div>
                 <PrimaryButton buttonText="Create account" onClick={emailRegister} />
             </div>
-            <p className="text-slate-500">Already have an account? <a href="/signin" className="text-black font-semibold">Sign In</a></p>
+            <p className="text-slate-500 mt-4">Already have an account? <a href="/signin" className="text-black font-semibold">Sign In</a></p>
         </div>
     )
 }
