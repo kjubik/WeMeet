@@ -5,6 +5,7 @@ import { createEvent, getUserEvents } from "../firebase/firestore";
 import { textInputStyle } from "../GlobalStyles";
 import PrimaryButton from "../components/PrimaryButton";
 import CreateEventForm from "../components/CreateEventForm";
+import EventPreviewCard from "../components/EventPreviewCard";
 
 function Events() {
 
@@ -53,8 +54,13 @@ function Events() {
             <label htmlFor="title">Title</label><br/>
             <input type="text" name="title" id="title" value={title} onChange={(e) => setTitle(e.target.value)} className={textInputStyle}/><br/>
             <PrimaryButton buttonText="Create new event" onClick={handleCreateEvent} />
-            <div className="w-full mx-auto mt-12 max-w-xl">
+            <div className="w-full mx-auto mt-12 max-w-xl flex flex-col gap-4">
                 <CreateEventForm />
+                <ul className="flex flex-col gap-12 py-12">
+                    {userEvents.map((event) => (
+                        <EventPreviewCard key={event.id} event={event} />
+                    ))}
+                </ul>
             </div>
         </div>
     );
