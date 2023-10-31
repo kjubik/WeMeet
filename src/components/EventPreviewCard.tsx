@@ -11,7 +11,7 @@ function EventPreviewCard({ event }: EventPreviewCardProps) {
     const auth = getAuth();
 
     const handleDeleteEvent = async () => {
-        deleteEvent(event.id, auth.currentUser?.uid);
+        await deleteEvent(event.id, auth.currentUser?.uid);
         location.reload();
     }
 
