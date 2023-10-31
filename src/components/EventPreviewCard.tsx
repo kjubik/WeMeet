@@ -1,6 +1,6 @@
 import { deleteEvent } from '../firebase/firestore';
 import { Event } from '../firebase/types';
-import { getAuth, reload } from '@firebase/auth';
+import { getAuth } from '@firebase/auth';
 
 interface EventPreviewCardProps {
     event: Event,
