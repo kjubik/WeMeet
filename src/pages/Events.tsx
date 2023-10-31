@@ -1,16 +1,13 @@
 import { getAuth } from "@firebase/auth";
 import { Event } from "../firebase/types";
 import { useEffect, useState } from "react";
-import { createEvent, getUserEvents } from "../firebase/firestore";
-import { textInputStyle } from "../GlobalStyles";
-import PrimaryButton from "../components/PrimaryButton";
+import { getUserEvents } from "../firebase/firestore";
 import CreateEventForm from "../components/CreateEventForm";
 import EventPreviewCard from "../components/EventPreviewCard";
 
 function Events() {
 
     const auth = getAuth();
-    const [title, setTitle] = useState("Your event");
     const [userEvents, setUserEvents] = useState<Event[]>([]); // State to store user's events
 
     useEffect(() => {
@@ -21,47 +18,15 @@ function Events() {
           }
     }, [auth.currentUser]);
 
-    const handleCreateEvent = () => {
-        createEvent(eventData, auth.currentUser?.uid)
-        .then(() => {
-            if (auth.currentUser) {
-                getUserEvents(auth.currentUser.uid).then((events) => {
-                  setUserEvents(events);
-                });
-              }
-        })
-        .catch((error) => {
-            console.error("Error handling create event:", error);
-          });
-    }
-
-    const eventData: Omit<Event, 'id'> = {
-        title: title,
-        description: "",
-        organizer: auth.currentUser?.uid,
-        participants: [auth.currentUser?.uid],
-    }
-
     return (
-        <div className="w-full">
-            <h1 className="font-semibold text-xl">My Events</h1>
-            <ul>
+        <div className="w-full mx-auto max-w-xl flex flex-col gap-4">
+            <CreateEventForm />
+            <h1 className="font-bold text-4xl mt-12">My Events</h1>
+            <ul className="flex flex-col gap-12 mt-6 mb-12">
                 {userEvents.map((event) => (
-                    <li key={event.id}>{event.title}</li>
+                    <EventPreviewCard key={event.id} event={event} />
                 ))}
             </ul>
-            <h2 className="font-semibold text-xl mt-8">Create new event</h2>
-            <label htmlFor="title">Title</label><br/>
-            <input type="text" name="title" id="title" value={title} onChange={(e) => setTitle(e.target.value)} className={textInputStyle}/><br/>
-            <PrimaryButton buttonText="Create new event" onClick={handleCreateEvent} />
-            <div className="w-full mx-auto mt-12 max-w-xl flex flex-col gap-4">
-                <CreateEventForm />
-                <ul className="flex flex-col gap-12 py-12">
-                    {userEvents.map((event) => (
-                        <EventPreviewCard key={event.id} event={event} />
-                    ))}
-                </ul>
-            </div>
         </div>
     );
 }
