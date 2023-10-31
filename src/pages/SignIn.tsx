@@ -16,6 +16,9 @@ function SignIn() {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             const userId = user?.uid;
             console.log("User ID: ", userId);
+            if (userId) {
+                navigate('/profile');
+            }
         });
 
         return () => {
