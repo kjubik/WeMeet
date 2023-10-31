@@ -18,7 +18,7 @@ function App() {
             <li><a href="/signin">Sign In</a></li>
             <li><a href="/register">Create Account</a></li>
             <li><a href="/profile">Profile</a></li>
-            <li><a href="/events">Events</a></li>
+            <li><a className="font-bold" href="/events">Events</a></li>
             <li><a href="release-notes">Release Notes</a></li>
           </ul>
         </nav>
