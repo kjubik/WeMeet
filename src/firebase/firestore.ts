@@ -1,6 +1,6 @@
 import { db } from './firebaseConfig';
 import { User, Event } from './types';
-import { collection, doc, getDocs, addDoc, runTransaction, setDoc } from 'firebase/firestore';
+import { collection, doc, getDocs, addDoc, runTransaction, setDoc, deleteDoc } from 'firebase/firestore';
 
 export const getUsers = async (): Promise<User[]> => {
   const querySnapshot = await getDocs(collection(db, "users"));
@@ -32,6 +32,19 @@ export const createEvent = async (event: Omit<Event, 'id'>, userId: string | und
   }
   catch (error) {
     console.error("Error creating the event:", error);
+    throw error;
+  }
+}
+
+export const deleteEvent = async (eventId: string, userId: string | undefined) => {
+  try {
+    await runTransaction(db, async (_transaction) => {
+      await deleteDoc(doc(db, `users/${userId}/events`, eventId));
+      await deleteDoc(doc(db, "events", eventId));
+    });
+  }
+  catch (error) {
+    console.error("Error deleting the event:", error);
     throw error;
   }
 }
