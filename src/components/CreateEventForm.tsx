@@ -17,8 +17,9 @@ function CreateEventForm() {
         participants: [auth.currentUser?.uid],
     }
 
-    const handleAddEvent = () => {
+    const handleAddEvent = async () => {
         createEvent(eventData, auth.currentUser?.uid);
+        location.reload();
     }
 
     return (
