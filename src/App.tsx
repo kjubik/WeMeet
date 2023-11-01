@@ -25,7 +25,7 @@ function App() {
         <main className="p-4">
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<div><a href="/signin">Sign In</a><br/><a href="/register">Create account</a></div>} />
+            <Route path="/" element={<div><h1>Welcome to WeMeet!</h1></div>} />
             <Route path="/signin" element={<SignIn/>} />
             <Route path="/register" element={<Regitser/>} />
             <Route element={<ProtectedRoutes />}>
