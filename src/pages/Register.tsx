@@ -29,7 +29,7 @@ function Regitser() {
 
     return (
         <div className="w-full mx-auto flex flex-col gap-6 text-center items-center">
-            <h1 className="font-semibold text-xl">Create account</h1>
+            <h1 className="font-semibold text-xl">Register</h1>
             <GoogleAuthButton/>
             <p>or</p>
             <div className="flex flex-col gap-4">
