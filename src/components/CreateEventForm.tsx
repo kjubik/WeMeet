@@ -31,12 +31,7 @@ function CreateEventForm() {
     }
 
     const handleInviteUser = async () => {
-        const userFound = await findUserWithEmail(userQuery)
-
-        if (!userFound) {
-            return;
-        }
-
+        if (!await findUserWithEmail(userQuery)) return;
         setInvitees(invitees => [...invitees, userQuery]) // this should be the ID of the invited user, not the query
         setUserQuery("");
         alert("User invited");
