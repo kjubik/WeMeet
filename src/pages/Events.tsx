@@ -19,7 +19,7 @@ function Events() {
     }, [auth.currentUser]);
 
     return (
-        <div className="w-full mx-auto max-w-xl flex flex-col gap-4">
+        <div className="w-full mx-auto max-w-sm flex flex-col gap-4">
             <CreateEventForm />
             <h1 className="font-bold text-4xl mt-12">My Events</h1>
             <ul className="flex flex-col gap-12 mt-6 mb-12">
