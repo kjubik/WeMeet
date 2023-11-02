@@ -1,17 +1,23 @@
 import { db } from './firebaseConfig';
 import { User, Event } from './types';
-import { collection, doc, getDocs, getDoc, addDoc, runTransaction, setDoc, deleteDoc, updateDoc } from 'firebase/firestore';
+import { collection, doc, getDocs, getDoc, addDoc, runTransaction, setDoc, deleteDoc, updateDoc, query, where } from 'firebase/firestore';
+
+
+// Users
+
 
 export const getUsers = async (): Promise<User[]> => {
   const querySnapshot = await getDocs(collection(db, "users"));
   return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as User));
 }
 
+
 export const getUser = async (userId: string): Promise<User> => {
   const docRef = doc(db, "users", userId);
   const querySnapshot = await getDoc(docRef);
   return { id: querySnapshot.id, ...querySnapshot.data() } as User;
 }
+
 
 export const getUserByEmail = async (email: string): Promise<User> => {
   const docRef = doc(db, "users", email);
@@ -23,16 +29,41 @@ export const createUser = async (user: User) => {
   await setDoc(doc(db, "users", user.id), {name: user.name, email: user.email});
 }
 
+
+export const findUserWithEmail = async (email: string): Promise<string | boolean> => {
+  try {
+    const q = query(collection(db, "users"), where("email", "==", email))
+    const querySnapshot = await getDocs(q);
+
+    if (querySnapshot.empty) {
+        alert("No user found");
+        return false;
+    } else {
+        return querySnapshot.docs[0].id;
+    }
+  } catch (error) {
+      console.error("Error checking if user with email exists:", error)
+  }
+
+  return false;
+}
+
+
+// Events
+
+
 export const getEvents = async (): Promise<Event[]> => {
   const querySnapshot = await getDocs(collection(db, "events"));
   return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as Event));
 }
+
 
 export const getUserEvents = async (userId: string): Promise<Event[]> => {
   const querySnapshot = await getDocs(collection(db, `users/${userId}/events`));
   return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as Event));
   
 }
+
 
 export const createEvent = async (event: Omit<Event, 'id'>, userId: string | undefined) => {
   try {
@@ -48,6 +79,7 @@ export const createEvent = async (event: Omit<Event, 'id'>, userId: string | und
   }
 }
 
+
 export const deleteEvent = async (eventId: string, userId: string | undefined) => {
   try {
     await runTransaction(db, async (_transaction) => {
@@ -60,6 +92,7 @@ export const deleteEvent = async (eventId: string, userId: string | undefined) =
     throw error;
   }
 }
+
 
 export const inviteToEvent = async (userId: string, eventId: string) => {
   try {

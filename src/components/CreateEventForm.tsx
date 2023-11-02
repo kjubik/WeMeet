@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Event } from "../firebase/types";
 import { getAuth } from "firebase/auth";
-import { createEvent, inviteToEvent } from "../firebase/firestore";
+import { createEvent, findUserWithEmail, inviteToEvent } from "../firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import { where, query, collection, QuerySnapshot, getDocs } from "firebase/firestore";
 import SecondaryButton from "./SecondaryButton";
@@ -33,20 +33,15 @@ function CreateEventForm() {
     }
 
     const handleInviteUser = async () => {
-        try {
-            const q = query(collection(db, "users"), where("email", "==", userQuery))
-            const querySnapshot: QuerySnapshot = await getDocs(q);
+        const userFound = await findUserWithEmail(userQuery)
 
-            if (querySnapshot.empty) {
-                alert("No user found");
-                return;
-            }
-        } catch (error) {
-            console.error("Error checking if user with email exists:", error)
+        if (!userFound) {
             return;
         }
 
         setInvitees(invitees => [...invitees, userQuery]) // this should be the ID of the invited user, not the query
+        setUserQuery("");
+        alert("User invited");
     }
 
     return (
@@ -70,7 +65,6 @@ function CreateEventForm() {
                     className="outline outline-1 outline-slate-500 rounded px-2 py-1 mb-2 w-full" />
                     <SecondaryButton buttonText="Invite" onClick={handleInviteUser} />
                 </div>
-                {invitees}
             </div>
             <button onClick={handleAddEvent}
             className="bg-black rounded-full text-white font-semibold py-2 text-md">
