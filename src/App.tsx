@@ -12,17 +12,17 @@ function App() {
   console.log(db);
   return (
     <div>
-        <nav>
-          <ul className="p-2 bg-slate-200 flex gap-4">
+        <nav className="flex flex-col items-center bg-neutral-900">
+          <ul className="text-neutral-300 py-4 text-center items-center flex gap-4">
             <li><a href="/">Home</a></li>
             <li><a href="/signin">Sign In</a></li>
             <li><a href="/register">Create Account</a></li>
             <li><a href="/profile">Profile</a></li>
-            <li><a className="font-bold" href="/events">Events</a></li>
+            <li><a className="font-bold" href="/events">✨Events</a></li>
             <li><a href="release-notes">Release Notes</a></li>
           </ul>
         </nav>
-        <main className="p-4">
+        <main className="p-6">
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<div><h1>Welcome to WeMeet!</h1></div>} />
