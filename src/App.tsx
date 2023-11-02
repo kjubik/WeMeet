@@ -13,7 +13,7 @@ function App() {
   return (
     <div>
         <nav className="flex flex-col items-center bg-neutral-900">
-          <ul className="text-neutral-300 py-4 text-center items-center flex gap-4">
+          <ul className="text-neutral-200 py-4 text-center items-center flex gap-4">
             <li><a href="/">Home</a></li>
             <li><a href="/signin">Sign In</a></li>
             <li><a href="/register">Create Account</a></li>
