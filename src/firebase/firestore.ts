@@ -1,10 +1,16 @@
 import { db } from './firebaseConfig';
 import { User, Event } from './types';
-import { collection, doc, getDocs, addDoc, runTransaction, setDoc, deleteDoc } from 'firebase/firestore';
+import { collection, doc, getDocs, getDoc, addDoc, runTransaction, setDoc, deleteDoc } from 'firebase/firestore';
 
 export const getUsers = async (): Promise<User[]> => {
   const querySnapshot = await getDocs(collection(db, "users"));
   return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as User));
+}
+
+export const getUser = async (userId: string): Promise<User> => {
+  const docRef = doc(db, "users", userId);
+  const querySnapshot = await getDoc(docRef);
+  return { id: querySnapshot.id, ...querySnapshot.data() } as User;
 }
 
 export const createUser = async (user: User) => {
