@@ -52,12 +52,12 @@ function CreateEventForm() {
                 </div>
                 <input type="text" value={description} onChange={(e) => setDescription(e.target.value)}
                 className="w-full text-md font-normal outline-none" placeholder="Add a description" />
-                <div className="w-full flex gap-4">
+                {/* <div className="w-full flex gap-4">
                     <input type="time" value={time} onChange={(e) => setTime(e.target.value)} 
                     className="w-full"/>
                     <input type="date" value={date} onChange={(e) => setDate(e.target.value)} 
                     className="w-full"/>
-                </div>
+                </div> */}
                 <div className="w-full flex gap-4 items-center">
                     <input type="text" value={userQuery} onChange={(e) => setUserQuery(e.target.value)} 
                     className="outline outline-1 outline-slate-500 rounded px-2 py-1 mb-2 w-full" />
