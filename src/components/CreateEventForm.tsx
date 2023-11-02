@@ -9,10 +9,14 @@ function CreateEventForm() {
 
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
+    const [date, setDate] = useState("");
+    const [time, setTime] = useState("");
 
     const eventData: Omit<Event, "id"> = {
         title,
         description,
+        date,
+        time,
         organizer: auth.currentUser?.uid,
         participants: [auth.currentUser?.uid],
     }
@@ -32,6 +36,8 @@ function CreateEventForm() {
                 </div>
                 <input type="text" value={description} onChange={(e) => setDescription(e.target.value)}
                 className="w-full text-md font-normal outline-none" placeholder="Add a description" />
+                <input type="time" value={time} onChange={(e) => setTime(e.target.value)} />
+                <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
             </div>
             <button onClick={handleAddEvent}
             className="bg-black rounded-full text-white font-semibold py-2 text-md">

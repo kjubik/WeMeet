@@ -11,6 +11,8 @@ export interface Event {
     id: string;
     title: string;
     description: string;
+    date: string;
+    time: string;
     organizer: string | undefined;
     participants: (string | undefined)[];
 }
