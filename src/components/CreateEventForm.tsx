@@ -31,8 +31,13 @@ function CreateEventForm() {
     }
 
     const handleInviteUser = async () => {
-        if (!await findUserWithEmail(userQuery)) return;
-        setInvitees(invitees => [...invitees, userQuery]) // this should be the ID of the invited user, not the query
+        const userId = await findUserWithEmail(userQuery)
+
+        if (userId == "false") {
+            return;
+        }
+
+        setInvitees(invitees => [...invitees, userId])
         setUserQuery("");
         alert("User invited");
     }
@@ -58,6 +63,12 @@ function CreateEventForm() {
                     className="outline outline-1 outline-slate-500 rounded px-2 py-1 mb-2 w-full" />
                     <SecondaryButton buttonText="Invite" onClick={handleInviteUser} />
                 </div>
+                <ul>
+                    <p>Invited users</p>
+                    {invitees.map((invitee, index) => (
+                        <li key={index}>{invitee}</li>
+                    ))}
+                </ul>
             </div>
             <button onClick={handleAddEvent}
             className="bg-black rounded-full text-white font-semibold py-2 text-md">

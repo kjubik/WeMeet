@@ -30,14 +30,14 @@ export const createUser = async (user: User) => {
 }
 
 
-export const findUserWithEmail = async (email: string): Promise<string | boolean> => {
+export const findUserWithEmail = async (email: string): Promise<string> => {
   try {
     const q = query(collection(db, "users"), where("email", "==", email))
     const querySnapshot = await getDocs(q);
 
     if (querySnapshot.empty) {
         alert("No user found");
-        return false;
+        return "false";   // This is super dumb, but I'll figure out a better method later
     } else {
         return querySnapshot.docs[0].id;
     }
@@ -45,7 +45,7 @@ export const findUserWithEmail = async (email: string): Promise<string | boolean
       console.error("Error checking if user with email exists:", error)
   }
 
-  return false;
+  return "false";   // This is also as dumb as the previous
 }
 
 
