@@ -13,9 +13,15 @@ function Regitser() {
     const auth = getAuth();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [retyped, setRetyped] = useState("");
 
 
     const emailRegister = () => {
+        if (password !== retyped) {
+            alert("Passwords do not match");
+            return;
+        }
+
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             console.log("Account created: ", userCredential.user)
@@ -38,6 +44,8 @@ function Regitser() {
                     <input type="text" name="email" id="email" value={email} onChange={(e) => setEmail(e.target.value)} className={textInputStyle} placeholder="example@mail.com" />
                     <label htmlFor="password">Password</label>
                     <input type="password" name="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)} className={textInputStyle} placeholder="********" />
+                    <label htmlFor="retype">Re-enter password</label>
+                    <input type="password" name="retype" id="retype" value={retyped} onChange={(e) => setRetyped(e.target.value)} className={textInputStyle} placeholder="********"/>
                 </div>
                 <PrimaryButton buttonText="Create account" onClick={emailRegister} />
             </div>
