@@ -7,7 +7,7 @@ type SecondaryButtonProps = {
 function SecondaryButton({ buttonText, onClick }: SecondaryButtonProps) {
 
     return (
-        <button onClick={onClick} className="text-blue-500 font-semibold">
+        <button onClick={onClick} className="text-black font-semibold">
             {buttonText}
         </button>
     );
