@@ -4,7 +4,8 @@ export interface User {
     username: string;
     name: string;
     email: string;
-    events: string[];    // events in which the user is participating
+    events: string[];
+    eventInvites: string[];
 }
 
 export interface Event {
@@ -15,4 +16,5 @@ export interface Event {
     time: string;
     organizer: string | undefined;
     participants: (string | undefined)[];
+    invitees: string[];
 }
