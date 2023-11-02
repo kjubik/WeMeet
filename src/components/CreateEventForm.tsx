@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { Event } from "../firebase/types";
 import { getAuth } from "firebase/auth";
-import { createEvent, findUserWithEmail, inviteToEvent } from "../firebase/firestore";
-import { db } from "../firebase/firebaseConfig";
-import { where, query, collection, QuerySnapshot, getDocs } from "firebase/firestore";
+import { createEvent, findUserWithEmail } from "../firebase/firestore";
 import SecondaryButton from "./SecondaryButton";
 
 function CreateEventForm() {
