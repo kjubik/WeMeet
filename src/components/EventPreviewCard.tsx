@@ -1,6 +1,4 @@
-import { deleteEvent } from '../firebase/firestore';
 import { Event } from '../firebase/types';
-import { getAuth } from '@firebase/auth';
 
 interface EventPreviewCardProps {
     event: Event,
@@ -8,10 +6,8 @@ interface EventPreviewCardProps {
 
 function EventPreviewCard({ event }: EventPreviewCardProps) {
 
-    const auth = getAuth();
-
     const handleDeleteEvent = async () => {
-        await deleteEvent(event.id, auth.currentUser?.uid);
+        event.isDeleted = true;
         location.reload();
     }
 
@@ -25,16 +21,6 @@ function EventPreviewCard({ event }: EventPreviewCardProps) {
                 </div>
                 <h3 className="w-full text-md font-normal text-neutral-500">{event.description ? event.description : "No description"}</h3>
                 <p>{event.date} at {event.time}</p>
-            </div>
-            <div className='flex flex-col gap-3'>
-                {/* <button
-                className="bg-black rounded-full text-white font-semibold py-2 text-md w-full">
-                    View event
-                </button> */}
-                {/* <button
-                className="bg-neutral-200 rounded-full text-black font-semibold py-2 text-md w-full">
-                    Edit event
-                </button> */}
             </div>
         </div>
     )
