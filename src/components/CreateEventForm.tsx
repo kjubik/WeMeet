@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Event } from "../firebase/types";
 import { getAuth } from "firebase/auth";
-import { createEvent, findUserWithEmail } from "../firebase/firestore";
+import { createEvent, findUserWithUsername } from "../firebase/firestore";
 import SecondaryButton from "./SecondaryButton";
 
 function CreateEventForm() {
@@ -31,7 +31,7 @@ function CreateEventForm() {
     }
 
     const handleInviteUser = async () => {
-        const userId = await findUserWithEmail(userQuery)
+        const userId = await findUserWithUsername(userQuery)
         if (userId == "false") {
             alert("User does not exist");
             return;

@@ -30,9 +30,9 @@ export const createUser = async (user: User) => {
 }
 
 
-export const findUserWithEmail = async (email: string): Promise<string> => {
+export const findUserWithUsername = async (username: string): Promise<string> => {
   try {
-    const q = query(collection(db, "users"), where("email", "==", email))
+    const q = query(collection(db, "users"), where("username", "==", username))
     const querySnapshot = await getDocs(q);
 
     if (querySnapshot.empty) {
