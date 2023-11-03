@@ -10,6 +10,7 @@ export interface User {
 
 export interface Event {
     id: string;
+    isDeleted: boolean;
     title: string;
     description: string;
     date: string;

@@ -19,33 +19,27 @@ export const getUser = async (userId: string): Promise<User> => {
 }
 
 
-export const getUserByEmail = async (email: string): Promise<User> => {
-  const docRef = doc(db, "users", email);
-  const querySnapshot = await getDoc(docRef);
-  return { id: querySnapshot.id, ...querySnapshot.data() } as User;
-}
-
 export const createUser = async (user: User) => {
   await setDoc(doc(db, "users", user.id), {name: user.name, email: user.email});
 }
 
 
-export const findUserWithUsername = async (username: string): Promise<string> => {
+export const searchUserByUsername = async (username: string): Promise<string | null> => {
   try {
-    const q = query(collection(db, "users"), where("username", "==", username))
+    const usersCollection = collection(db, "users");
+    const q = query(usersCollection, where("username", "==", username));
     const querySnapshot = await getDocs(q);
 
     if (querySnapshot.empty) {
-        alert("No user found");
-        return "false";   // This is super dumb, but I'll figure out a better method later
-    } else {
-        return querySnapshot.docs[0].id;
+      return null;
     }
-  } catch (error) {
-      console.error("Error checking if user with email exists:", error)
+    
+    const userId = querySnapshot.docs[0].id;
+    return userId;
   }
-
-  return "false";   // This is also as dumb as the previous
+  catch (error) {
+    throw error;
+  }
 }
 
 
@@ -70,6 +64,16 @@ export const createEvent = async (event: Omit<Event, 'id'>, userId: string | und
     await runTransaction(db, async (_transaction) => {
       const newEvent = await addDoc(collection(db, "events"), event);
       await setDoc(doc(db, `users/${userId}/events`, newEvent.id), event);
+
+      // for each user in invitees array, add eventId to the user's eventInvites array
+      for (const invitee of event.invitees) {
+        const docRef = doc(db, `users/${invitee}`);
+        const userDoc = await getDoc(docRef);
+        const user = userDoc.data() as User;
+        await updateDoc(docRef, {
+          eventInvites: [...user.eventInvites, newEvent.id]
+        });
+      }
     });
     console.log("Event created successfully!");
   }
@@ -93,19 +97,3 @@ export const deleteEvent = async (eventId: string, userId: string | undefined) =
   }
 }
 
-
-export const inviteToEvent = async (userId: string, eventId: string) => {
-  try {
-    await runTransaction(db, async (_transaction) => {
-      await updateDoc(doc(db, "event", eventId), {
-        ["invitees"]: [...userId]
-      })
-      await updateDoc(doc(db, "users", userId), {
-        ["eventInvites"]: [...eventId]
-      })
-    })
-  } catch (error) {
-    alert("Failed to invite user");
-    console.error("Failed to invite user",error)
-  }
-}
