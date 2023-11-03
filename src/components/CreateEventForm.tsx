@@ -32,8 +32,18 @@ function CreateEventForm() {
 
     const handleInviteUser = async () => {
         const userId = await findUserWithEmail(userQuery)
-
         if (userId == "false") {
+            alert("User does not exist");
+            return;
+        }
+
+        if (eventData.participants.includes(userId)) {
+            alert("User is already a participant");
+            return;
+        }
+
+        if (invitees.includes(userId)) {
+            alert("User is already invited");
             return;
         }
 
@@ -58,18 +68,18 @@ function CreateEventForm() {
                     <input type="date" value={date} onChange={(e) => setDate(e.target.value)} 
                     className="w-full"/>
                 </div> */}
-                <div className="w-full flex gap-4 items-center">
-                    <input type="text" value={userQuery} onChange={(e) => setUserQuery(e.target.value)} 
-                    className="outline outline-1 outline-slate-500 rounded px-2 py-1 mb-2 w-full" />
-                    <SecondaryButton buttonText="Invite" onClick={handleInviteUser} />
-                </div>
-                <ul>
-                    <p>Invited users</p>
-                    {invitees.map((invitee, index) => (
-                        <li key={index}>{invitee}</li>
-                    ))}
-                </ul>
             </div>
+            <div className="w-full flex gap-4 items-center">
+                <input type="text" value={userQuery} onChange={(e) => setUserQuery(e.target.value)} 
+                className="outline outline-1 outline-slate-500 rounded px-2 py-1 mb-2 w-full" placeholder="Add participant" />
+                <SecondaryButton buttonText="Invite" onClick={handleInviteUser} />
+            </div>
+            <ul>
+                <p>Invited users</p>
+                {invitees.map((invitee, index) => (
+                    <li key={index}>{invitee}</li>
+                ))}
+            </ul>
             <button onClick={handleAddEvent}
             className="bg-black rounded-full text-white font-semibold py-2 text-md">
                 Create event
