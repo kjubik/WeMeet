@@ -19,3 +19,9 @@ export interface Event {
     participants: (string | undefined)[];
     invitees: string[];
 }
+
+export interface mapEventUser {
+    id: string;
+    userId: string;
+    eventId: string;
+}
