@@ -101,3 +101,16 @@ export const inviteUserToEvent = async (userId: string, eventId: string) => {
     throw error;
   }
 }
+
+
+export const inviteUsersToEventSQL = async (eventId: string, userId: string) => {
+  try {
+    await runTransaction(db, async (_transaction) => {
+      await addDoc(collection(db, "mapEventsUsers"), {eventId, userId});
+    });
+    console.log("Event created successfully!");
+  } catch (error) {
+    console.error("Error creating the event:", error);
+    throw error;
+  }
+}
