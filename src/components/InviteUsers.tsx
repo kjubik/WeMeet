@@ -38,7 +38,7 @@ function InviteUsers({participants, invitees, setInvitees}: Props) {
     return (
         <div>
             <div className='flex gap-2'>
-                <input type="text" placeholder='Search for user' value={query} onChange={(e) => setQuery(e.target.value)} 
+                <input type="text" placeholder='Search by username' value={query} onChange={(e) => setQuery(e.target.value)} 
                 className='w-full'/>
                 <button onClick={handleInviteClicked}>Invite</button>
             </div>
