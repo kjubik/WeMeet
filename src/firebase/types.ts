@@ -1,8 +1,9 @@
+import { Timestamp } from "firebase/firestore";
 
 export interface User {
     id?: string;         // This should be the UID from Firebase Authentication
     isDeleted: boolean;
-    creationDate: string;
+    creationDate: Timestamp;
     username: string;
     displayName: string;
     email: string;
@@ -21,8 +22,8 @@ export interface Event {
     tags: string[];
     isPrivate: boolean;
     createdBy: string;
-    startDate: string;
-    endDate: string;
+    startDate: Timestamp;
+    endDate: Timestamp;
 }
 
 export interface Participation {
@@ -34,18 +35,17 @@ export interface Participation {
 export interface Invitation {
     id?: string;
     isDeleted: boolean;
-    creationDate: string;
+    creationDate: Timestamp;
     recipientId: string;
     eventId: string;
     senderId: string;
-    sendDate: string;
-    expirationDate: string;
+    expirationDate: Timestamp;
 }
 
 export interface Timeslot {
     id?: string;
     userId: string;
     eventId: string;
-    startTime: string;
-    endTime: string;
+    startTime: Timestamp;
+    endTime: Timestamp;
 }
