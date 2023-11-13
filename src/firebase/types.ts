@@ -6,7 +6,7 @@ export interface User {
     username: string;
     displayName: string;
     email: string;
-    status: "enabled" | "disabled";
+    isEnabled: boolean;
 }
 
 export interface Event {
@@ -19,7 +19,7 @@ export interface Event {
     location: string;       // this should allow for more complexity (online with link what platform, in-person location, etc.)
     status: "upcoming" | "ongoing" | "completed" | "cancelled";
     tags: string[];
-    visibility: "public" | "private";
+    isPrivate: boolean;
     createdBy: string;
     startDate: string;
     endDate: string;
