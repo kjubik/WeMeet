@@ -3,27 +3,31 @@ import { User, Event } from './types';
 import { collection, doc, getDocs, getDoc, addDoc, runTransaction, setDoc, deleteDoc, updateDoc, query, where } from 'firebase/firestore';
 
 
-export const getUsers = async (): Promise<User[]> => {
-  const querySnapshot = await getDocs(collection(db, "users"));
+export const getAllUsers = async (): Promise<User[]> => {
+  const querySnapshot = await getDocs(collection(db, "user"));
   return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as User));
 }
 
 
 export const getUser = async (userId: string): Promise<User> => {
-  const docRef = doc(db, "users", userId);
+  const docRef = doc(db, "user", userId);
   const querySnapshot = await getDoc(docRef);
   return { id: querySnapshot.id, ...querySnapshot.data() } as User;
 }
 
 
 export const createUser = async (user: User) => {
-  await setDoc(doc(db, "users", user.id), {name: user.name, email: user.email});
+  var userData = {...user}
+  const userId = user.id
+  if (!userId) throw new Error("UID is required to create a user");
+  delete userData.id
+  await setDoc(doc(db, "user", userId), userData);
 }
 
 
 export const searchUserByUsername = async (username: string): Promise<string | null> => {
   try {
-    const usersCollection = collection(db, "users");
+    const usersCollection = collection(db, "user");
     const q = query(usersCollection, where("username", "==", username));
     const querySnapshot = await getDocs(q);
 

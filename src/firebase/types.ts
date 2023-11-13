@@ -1,6 +1,6 @@
 
 export interface User {
-    id: string;         // This should be the UID from Firebase Authentication
+    id?: string;         // This should be the UID from Firebase Authentication
     username: string;
     name: string;
     email: string;
