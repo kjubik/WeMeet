@@ -32,7 +32,7 @@ function Profile() {
     return (
         <div className="w-full">
             <div className="mx-auto max-w-sm flex flex-col items-center">
-                <h1 className="text-3xl font-bold text-center">{userData?.name}</h1>
+                <h1 className="text-3xl font-bold text-center">{userData?.displayName}</h1>
                 <h2 className="mt-1 text-neutral-500">{userData?.email}</h2>
                 <div className="mt-8">
                     <PrimaryButton buttonText="Sign Out" onClick={handleLogout} />
