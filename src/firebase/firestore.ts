@@ -1,6 +1,6 @@
 import { db } from './firebaseConfig';
 import { User, Event } from './types';
-import { collection, doc, getDocs, getDoc, addDoc, runTransaction, setDoc, deleteDoc, updateDoc, query, where } from 'firebase/firestore';
+import { collection, doc, getDocs, getDoc, addDoc, runTransaction, setDoc, deleteDoc, updateDoc, query, where, DocumentData } from 'firebase/firestore';
 
 
 export const getAllUsers = async (): Promise<User[]> => {
@@ -80,23 +80,25 @@ export const delteEvent = async (eventId: string) => {
 }
 
 
-// export const searchUserByUsername = async (username: string): Promise<string | null> => {
-//   try {
-//     const usersCollection = collection(db, "user");
-//     const q = query(usersCollection, where("username", "==", username));
-//     const querySnapshot = await getDocs(q);
+export const createEvent = async (event: Event) => {
+  var eventData = {...event}  
+  const eventId = event.id
+  if (!eventId) throw new Error("Event ID is required to create an event");
+  delete eventData.id
 
-//     if (querySnapshot.empty) {
-//       return null;
-//     }
-    
-//     const userId = querySnapshot.docs[0].id;
-//     return userId;
-//   }
-//   catch (error) {
-//     throw error;
-//   }
-// }
+  await setDoc(doc(db, "event", eventId), eventData);
+}
+
+
+export const getUserEvents = async (userId: string): Promise<Event[]> => {
+  const events: Event[] = [];
+
+  const q = query(collection(db, "participation"), where("userId", "==", userId));
+  const participationQuerySnapshot = await getDocs(q);
+
+
+  return events;
+}
 
 
 // export const getEvents = async (): Promise<Event[]> => {
@@ -119,9 +121,7 @@ export const delteEvent = async (eventId: string) => {
 
 //       await setDoc(doc(db, `users/${userId}/events`, newEvent.id), event);
 
-//       for (const inviteeId of event.invitees) {
-//         await inviteUserToEvent(inviteeId, newEvent.id);
-//       }
+      
 //     });
 //     console.log("Event created successfully!");
 //   }
@@ -152,7 +152,7 @@ export const delteEvent = async (eventId: string) => {
 //     const userDoc = await getDoc(docRef);
 //     const user = userDoc.data() as User;
 //     await updateDoc(docRef, {
-//       eventInvites: [...user.eventInvites, eventId]
+//       eventInvites: [eventId]
 //     });
 //   }
 //   catch (error) {
