@@ -1,7 +1,7 @@
 import { getAuth } from "@firebase/auth";
 import PrimaryButton from "./PrimaryButton";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
+import { Timestamp, doc, getDoc } from "firebase/firestore";
 import { db } from "../firebase/firebaseConfig";
 import { createUser } from "../firebase/firestore";
 import { useNavigate } from "react-router-dom";
@@ -26,9 +26,11 @@ function GoogleAuthButton() {
                 const newUser : User = {
                     id: auth.currentUser.uid,
                     email: auth.currentUser.email || '',
-                    name: auth.currentUser.displayName || '',
+                    displayName: auth.currentUser.displayName || '',
                     username: auth.currentUser.displayName || '',
-                    events: [],
+                    isDeleted: false,
+                    isEnabled: true,
+                    creationDate: Timestamp.fromDate(new Date()),
                 }
                 await createUser(newUser);
                 console.log("User created in Firestore.");
