@@ -18,10 +18,11 @@ export const getUser = async (userId: string): Promise<User> => {
 
 
 export const createUser = async (user: User) => {
-  var userData = {...user}
+  var userData = {...user}  
   const userId = user.id
   if (!userId) throw new Error("UID is required to create a user");
   delete userData.id
+
   await setDoc(doc(db, "user", userId), userData);
 }
 
