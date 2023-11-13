@@ -3,16 +3,16 @@ import { User, Event } from './types';
 import { collection, doc, getDocs, getDoc, addDoc, runTransaction, setDoc, deleteDoc, updateDoc, query, where } from 'firebase/firestore';
 
 
-
 export const getAllUsers = async (): Promise<User[]> => {
   const querySnapshot = await getDocs(collection(db, "user"));
+
   return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as User));
 }
 
 
 export const getUser = async (userId: string): Promise<User> => {
-  const docRef = doc(db, "user", userId);
-  const querySnapshot = await getDoc(docRef);
+  const querySnapshot = await getDoc(doc(db, "user", userId));
+
   return { id: querySnapshot.id, ...querySnapshot.data() } as User;
 }
 
@@ -24,6 +24,59 @@ export const createUser = async (user: User) => {
   delete userData.id
 
   await setDoc(doc(db, "user", userId), userData);
+}
+
+
+export const updateUser = async (user: User) => {
+  var userData = {...user}  
+  const userId = user.id
+  if (!userId) throw new Error("UID is required to update a user");
+  delete userData.id
+
+  await updateDoc(doc(db, "user", userId), userData);
+}
+
+
+export const deleteUser = async (userId: string) => {
+  await updateDoc(doc(db, "user", userId), { isDeleted: true, email: "", displayName: "", username: "" });
+}
+
+
+export const searchUserByUsername = async (username: string): Promise<string | null> => {
+  try {
+    const q = query(collection(db, "user"), where("username", "==", username));
+    const querySnapshot = await getDocs(q);
+
+    if (querySnapshot.empty) {
+      return null;
+    }
+    
+    const userId = querySnapshot.docs[0].id;
+    return userId;
+  }
+  catch (error) {
+    throw error;
+  }
+}
+
+
+export const getEventById = async (eventId: string): Promise<Event> => {
+  const querySnapshot = await getDoc(doc(db, "event", eventId));
+
+  return { id: querySnapshot.id, ...querySnapshot.data() } as Event;
+}
+
+
+export const getEventsByTitle = async (title: string): Promise<Event[]> => {
+  const q = query(collection(db, "event"), where("title", "==", title));
+  const querySnapshot = await getDocs(q);
+
+  return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() } as Event));
+}
+
+
+export const delteEvent = async (eventId: string) => {
+  await updateDoc(doc(db, "event", eventId), { isDeleted: true, title: "", desciption: "" });
 }
 
 
