@@ -1,6 +1,10 @@
-# WeMeet
+# WeMeet (Archived)
 
-WeMeet is a web application aimed at helping people coordinate dates and times for events or meetings. It's a versatile tool suitable for various scenarios, from coordinating group outings with friends to scheduling online business meetings.
+**Note: This project has been archived and is no longer actively maintained.**
+
+WeMeet was supposed to be a web application aimed at helping people coordinate dates and times for events or meetings. It was designed as a versatile tool suitable for various scenarios, from coordinating group outings with friends to scheduling online business meetings. However, the project was always intended to be only a learning experience and not meant to become a fully-fledged product.
+
+I have since taken the knowledge gained from WeMeet and created a new project called ProjectPal for my Programming Workshop course. You can find the new project on my GitHub repository [here](https://github.com/kjubik/ProjectPal).
 
 ## Configuration 🛠️
 
@@ -24,12 +28,11 @@ To run WeMeet locally, install dependencies and run the dev server:
 
 ## Features ✨
 
-WeMeet will offer advanced functionalities to streamline the process of coordinating meeting timeframes, making it easy for participants to vote on suitable dates and times. Currently working on delivering a minimal viable product for showcasing my web developement skills. Planning on further developement of custom advanced features and integrations with online meeting platforms (Google Meet, Zoom, MS Teams, etc.) and productivity apps (Google Calendar, Outlook, Google Drive, Dropbox, Google Maps).
+WeMeet offered advanced functionalities to streamline the process of coordinating meeting timeframes, making it easy for participants to vote on suitable dates and times. However, please note that these features are no longer actively maintained.
 
 ## Design 🦄
 
-This project has been also an avenue for improving my design and planning skills. I used [Figma](https://www.figma.com/file/8Dufdk0POagRwGEIEQ4o20/WeMeet?type=design&node-id=0%3A1&mode=design&t=K5RxwK0jLODBpYFR-1) for component and UI design, and [FigJam](https://www.figma.com/file/KRrDhfDh90Re3Xs7j1mQ9M/WeMeet-%7C-User-Flow?type=whiteboard&node-id=0%3A1&t=p4QcCdZMjhw1bpXc-1) for strategic user flow planning. My goal was to craft a user experience that's both engaging and visually appealing.
-
+This project was also an avenue for improving my design and planning skills. I used [Figma](https://www.figma.com/file/8Dufdk0POagRwGEIEQ4o20/WeMeet?type=design&node-id=0%3A1&mode=design&t=K5RxwK0jLODBpYFR-1) for component and UI design, and [FigJam](https://www.figma.com/file/KRrDhfDh90Re3Xs7j1mQ9M/WeMeet-%7C-User-Flow?type=whiteboard&node-id=0%3A1&t=p4QcCdZMjhw1bpXc-1) for strategic user flow planning. My goal was to craft a user experience that's both engaging and visually appealing.
 
 ## Lessons Learned 📖
 
@@ -51,7 +54,7 @@ Categorize commit messages as "feat," "chore," "bug," or "refactor" for easier r
 
 ### Think Twice, Code Once
 
-Quality of code takes priority over quantity of code. Thinking before typing helps to avoid backtracking through code and constant refactroing at later stages.
+Quality of code takes priority over quantity of code. Thinking before typing helps to avoid backtracking through code and constant refactoring at later stages.
 
 ### Don't Design Too Much
 
