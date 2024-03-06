@@ -1,14 +1,17 @@
 <script lang="ts">
     import { auth } from '../firebaseConfig';
     import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+    import { user } from '../stores';
 
     let email = '';
     let password = '';
 
+    $: console.log('user', user);
+
     const handleSignUp = (email: string, password: string) => {
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            const user = userCredential.user;
+            user.set(userCredential.user);
             console.log('User created', user);
         })
         .catch((error) => {
@@ -21,7 +24,7 @@
     const handleSignIn = (email: string, password: string) => {
         signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-            const user = userCredential.user;
+            user.set(userCredential.user);
             console.log('User signed in', user);
         })
         .catch((error) => {
@@ -40,3 +43,5 @@
     <button type="button" on:click={() => handleSignUp(email, password)}>Sign Up</button>
     <button type="button" on:click={() => handleSignIn(email, password)}>Sign In</button>
 </form>
+
+<a href="/profile">Go to Profile</a>
