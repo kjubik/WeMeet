@@ -5,7 +5,7 @@
 1. **User authentication**
 - create sign-in and sign-up forms ☑️
 - track user auth state
-- allow access to app only for authed users
+- allow access to app only for authed users ☑️
 
 2. **Event creation**
 - allow authed users to create events
