@@ -6,8 +6,6 @@
     let email = '';
     let password = '';
 
-    $: console.log('user', user);
-
     const handleSignUp = (email: string, password: string) => {
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
@@ -44,4 +42,4 @@
     <button type="button" on:click={() => handleSignIn(email, password)}>Sign In</button>
 </form>
 
-<a href="/profile">Go to Profile</a>
+<a href="/app/profile">Go to Profile</a>
