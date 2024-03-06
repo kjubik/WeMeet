@@ -3,7 +3,7 @@
 ## 📋 Minimal Viable Product Draft
 
 1. **User authentication**
-- create sign-in and sign-up forms
+- create sign-in and sign-up forms ☑️
 - track user auth state
 - allow access to app only for authed users
 
