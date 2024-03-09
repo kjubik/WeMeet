@@ -10,7 +10,7 @@
 
 2. **Event creation**
 - ☑️ allow authed users to create events
-- include basic event details such as title, description, duration and timespan
+- ☑️ include basic event details such as title, description, duration and timespan
 - implement validation for event creation form
 
 3. **Event invitation**
