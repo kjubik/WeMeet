@@ -9,7 +9,7 @@
 - create user entry in database on sign-up
 
 2. **Event creation**
-- allow authed users to create events
+- ☑️ allow authed users to create events
 - include basic event details such as title, description, duration and timespan
 - implement validation for event creation form
 
