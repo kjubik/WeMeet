@@ -15,7 +15,7 @@
 
 3. **Event invitation**
 - allow event hosts to invite other users to their events
-- send email notifications to invited users with event de
+- send email notifications to invited users with event details
 - include attendance status functionality for responding to invitations
 
 4. **Interactive calendar**
