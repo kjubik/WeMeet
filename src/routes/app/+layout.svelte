@@ -3,7 +3,7 @@
 
 </script>
 
-{#if user}
+{#if $user}
     <slot/>
 {:else}
     <p>You must be signed in to use the app.</p>
