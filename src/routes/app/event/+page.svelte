@@ -1,17 +1,37 @@
 <script lang="ts">
+    import { user } from "../../../stores";
+    import { db } from "../../../firebaseConfig";
+    import { collection, addDoc } from "firebase/firestore";
 
     let eventData = {
         title: '',
         description: '',
         duration: 0,
         start: '',
-        end: ''
+        end: '',
+        is_deleted: false,
+        host_id: $user!.uid // can user be null here? maybe for a brief moment on initial load?
     }
 
     $: console.log(eventData);
 
-    function handleCreateEvent() {
-        console.log('Creating event', eventData);
+    async function handleCreateEvent() {
+        try {
+            await addDoc(collection(db, "event"), eventData)
+            .then((docRef) => {
+                console.log("Event created with ID:", docRef.id);
+                eventData = {
+                    ...eventData,
+                    title: '',
+                    description: '',
+                    duration: 0,
+                    start: '',
+                    end: '',
+                }
+            });
+        } catch (error) {
+            console.error("Error creating event:", error);
+        }
     }
 
 </script>
