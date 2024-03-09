@@ -6,6 +6,7 @@
 - ☑️ create sign-in and sign-up forms
 - ☑️ track user auth state
 - ☑️ allow access to app only for authed users
+- create user entry in database on sign-up
 
 2. **Event creation**
 - allow authed users to create events
