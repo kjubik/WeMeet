@@ -31,6 +31,6 @@
 
 6. **User profile**
 - ☑️ include basic profile fields such as username, display name and email
-- allow users to optionally upload an image for their profile picture
+- ☑️ allow users to optionally upload an image for their profile picture
 - allow users to view and edit their profile information
 - implement basic security measures for profile management, such as password reset
