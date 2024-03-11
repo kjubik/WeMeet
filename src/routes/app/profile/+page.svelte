@@ -40,7 +40,7 @@
         const profilePictureRef = ref(storage, `profilePictures/${$user!.uid}`);
         try {
             // Upload the profile picture to storage
-            await uploadBytes(profilePictureRef, profilePicture, {contentType: 'image/png'});
+            await uploadBytes(profilePictureRef, profilePicture, { contentType: profilePicture.type });
 
             // Get the download URL of the uploaded image
             downloadURL = await getDownloadURL(profilePictureRef);
@@ -60,7 +60,7 @@
     <h3>@{userData.username}</h3>
     <h4>✉ {userData.email}</h4>
 {/if}
-<input type="file" id="profile-picture" accept="image/png" bind:files={uploadedFiles}>
+<input type="file" id="profile-picture" accept="image/png, image/jpeg, image/webp" bind:files={uploadedFiles}>
 <br/>
 <button on:click={handleUploadImage}>Uplaod a profile picture</button>
 <br/>
