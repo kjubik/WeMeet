@@ -26,6 +26,14 @@
         } catch (error) {
             console.error('Error getting document:', error);
         }
+
+        try {
+            const profilePictureRef = ref(storage, `profilePictures/${$user!.uid}`);
+            downloadURL = await getDownloadURL(profilePictureRef);
+            console.log('Profile picture URL:', downloadURL);
+        } catch (error) {
+            console.error('Error getting profile picture:', error);
+        }
     });
 
     const handleUploadImage = async () => {
@@ -48,6 +56,7 @@
 {#if isLoaded}
     <h1>Profile</h1>
     <h2>{userData.displayName}</h2>
+    <img src={downloadURL} alt={`${userData.displayName}'s profile picture`} height="128">
     <h3>@{userData.username}</h3>
     <h4>✉ {userData.email}</h4>
 {/if}
