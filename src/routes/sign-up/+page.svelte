@@ -2,7 +2,8 @@
     import { auth } from '../../firebaseConfig';
     import { createUserWithEmailAndPassword } from 'firebase/auth';
     import { user } from '../../stores';
-    import { getDocs, query, collection, where, QuerySnapshot } from 'firebase/firestore';
+    import { query, where, collection, getDocs } from 'firebase/firestore';
+    import type { QuerySnapshot } from 'firebase/firestore';
     import { db } from '../../firebaseConfig';
 
     let newUser = {
@@ -15,15 +16,14 @@
 
     const handleSignUp = async (email: string, password: string) => {
         try {
-            const q = query(collection(db, "user"), where("email", "==", newUser.email));
-            const querySnapshot: QuerySnapshot = await getDocs(q);
-
-            if (!querySnapshot.empty) {
-                alert('Email already in use. Please use another email.');
+            const takenUsernameQuery = query(collection(db, 'takenUsername'), where('username', '==', newUser.username));
+            const queryResult: QuerySnapshot = await getDocs(takenUsernameQuery);
+            if (!queryResult.empty) {
+                alert('Username already in use');
                 return;
             }
         } catch (error) {
-            console.error('Error signing up:', error);
+            console.log('Error: ', error);
         }
 
         createUserWithEmailAndPassword(auth, email, password)
@@ -32,9 +32,11 @@
             console.log('User created', user);
         })
         .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            console.log(errorCode, errorMessage);
+            if (error.code == 'auth/email-already-in-use') {
+                alert('Email already in use');
+            } else {
+                alert('Error: ' + error.message);
+            }
         });
     }
 
