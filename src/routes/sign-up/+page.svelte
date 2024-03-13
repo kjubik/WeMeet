@@ -2,6 +2,8 @@
     import { auth } from '../../firebaseConfig';
     import { createUserWithEmailAndPassword } from 'firebase/auth';
     import { user } from '../../stores';
+    import { getDocs, query, collection, where, QuerySnapshot } from 'firebase/firestore';
+    import { db } from '../../firebaseConfig';
 
     let newUser = {
         email: '',
@@ -11,7 +13,19 @@
 
     let password = '';
 
-    const handleSignUp = (email: string, password: string) => {
+    const handleSignUp = async (email: string, password: string) => {
+        try {
+            const q = query(collection(db, "user"), where("email", "==", newUser.email));
+            const querySnapshot: QuerySnapshot = await getDocs(q);
+
+            if (!querySnapshot.empty) {
+                alert('Email already in use. Please use another email.');
+                return;
+            }
+        } catch (error) {
+            console.error('Error signing up:', error);
+        }
+
         createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             user.set(userCredential.user);
