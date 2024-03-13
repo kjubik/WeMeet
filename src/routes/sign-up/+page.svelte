@@ -4,6 +4,7 @@
     import { user } from '../../stores';
     import { query, where, collection, getDocs, type QuerySnapshot, doc, setDoc, deleteDoc } from 'firebase/firestore';
     import { db } from '../../firebaseConfig';
+    import { goto } from '$app/navigation';
 
     let newUser = {
         email: '',
@@ -106,6 +107,7 @@
         });
 
         alert('Account created!');
+        goto('/app/profile');
     }
 
 </script>
