@@ -2,8 +2,7 @@
     import { auth } from '../../firebaseConfig';
     import { createUserWithEmailAndPassword } from 'firebase/auth';
     import { user } from '../../stores';
-    import { query, where, collection, getDocs } from 'firebase/firestore';
-    import type { QuerySnapshot } from 'firebase/firestore';
+    import { query, where, collection, getDocs, addDoc, type QuerySnapshot, doc, setDoc } from 'firebase/firestore';
     import { db } from '../../firebaseConfig';
 
     let newUser = {
@@ -26,18 +25,25 @@
             console.log('Error: ', error);
         }
 
-        createUserWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
+        try {
+            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
             user.set(userCredential.user);
             console.log('User created', user);
-        })
-        .catch((error) => {
+            const userRef = doc(db, 'user', userCredential.user.uid);
+            await setDoc(userRef, newUser);
+            console.log('Document written');
+            alert('User created');
+        } catch (error: any) {
             if (error.code == 'auth/email-already-in-use') {
                 alert('Email already in use');
+            } else if (error.code == 'auth/invalid-email') {
+                alert('Invalid email');
+            } else if (error.code == 'auth/weak-password') {
+                alert('Weak password');
             } else {
-                alert('Error: ' + error.message);
+                console.error('Error: ', error);
             }
-        });
+        }
     }
 
 </script>
