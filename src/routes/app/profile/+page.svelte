@@ -13,6 +13,14 @@
     let downloadURL: string;
     $: console.log('View the uploaded image at', downloadURL)
 
+    /* 
+    It'd be really nice to put all of this in a '+page.ts' file and not cram it into an onMount,
+    but since I'm using Firebase's async functions and not the Svelte's reccomended 'fetch' function,
+    I can't cause a reload of the page when the refreshes the profile page.
+    
+    Issue posted on GitHub:
+    https://github.com/sveltejs/kit/issues/1684 
+    */
     onMount(async () => {
         try {
             console.log('user', $user?.uid);
