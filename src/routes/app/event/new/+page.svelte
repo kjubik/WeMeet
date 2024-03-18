@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { db } from "../../../../firebaseConfig";
     import { user } from "$stores/user";
+    import { db } from "$lib/firebaseConfig";
     import { collection, addDoc } from "firebase/firestore";
     import { goto } from "$app/navigation";
 

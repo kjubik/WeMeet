@@ -1,9 +1,8 @@
 <script lang="ts">
-    import { auth } from '../../firebaseConfig';
+    import { auth, db } from '$lib/firebaseConfig';
     import { createUserWithEmailAndPassword, deleteUser } from 'firebase/auth';
     import { user } from '../../stores/user';
     import { query, where, collection, getDocs, type QuerySnapshot, doc, setDoc, deleteDoc } from 'firebase/firestore';
-    import { db } from '../../firebaseConfig';
     import { goto } from '$app/navigation';
 
     let newUser = {

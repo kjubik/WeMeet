@@ -1,9 +1,8 @@
 <script lang="ts">
     import { user } from '$stores/user';
     import { onMount } from 'svelte';
-    import { db } from '../../../firebaseConfig';
+    import { db, storage } from '$lib/firebaseConfig';
     import { getDoc, doc } from 'firebase/firestore';
-    import { storage } from '../../../firebaseConfig';
     import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
     let userData: any;

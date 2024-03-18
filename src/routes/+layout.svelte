@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { auth } from "../firebaseConfig";
+    import { auth } from "$lib/firebaseConfig";
     import { onAuthStateChanged, signOut } from "firebase/auth";
     import { user } from "$stores/user";
 
