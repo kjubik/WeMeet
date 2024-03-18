@@ -1,6 +1,6 @@
 <script lang="ts">
-    import { user } from "../../../stores";
-    import { db } from "../../../firebaseConfig";
+    import { user } from "../../../../stores";
+    import { db } from "../../../../firebaseConfig";
     import { collection, addDoc } from "firebase/firestore";
 
     let eventData = {
