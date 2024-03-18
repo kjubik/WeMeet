@@ -8,6 +8,7 @@
 		"forceConsistentCasingInFileNames": true,
 		"paths": {
 			"$lib/*": ["src/lib/*"],
+			"$stores/*": ["src/stores/*"],
 		},
 		"resolveJsonModule": true,
 		"skipLibCheck": true,

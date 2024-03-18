@@ -1,7 +1,7 @@
 <script lang="ts">
     import { auth } from "../firebaseConfig";
     import { onAuthStateChanged, signOut } from "firebase/auth";
-    import { user } from "../stores";
+    import { user } from "$stores/user";
 
     onAuthStateChanged(auth, (currentUser) => {
         user.set(currentUser);

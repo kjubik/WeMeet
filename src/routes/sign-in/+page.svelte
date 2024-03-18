@@ -1,7 +1,7 @@
 <script lang="ts">
     import { auth } from '../../firebaseConfig';
     import { signInWithEmailAndPassword } from 'firebase/auth';
-    import { user } from '../../stores';
+    import { user } from '$stores/user';
 
     let email = '';
     let password = '';
