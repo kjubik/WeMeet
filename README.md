@@ -34,3 +34,4 @@
 - ☑️ allow users to optionally upload an image for their profile picture
 - allow users to view and edit their profile information
 - implement basic security measures for profile management, such as password reset
+- display user's events list (both hosting and participating)
