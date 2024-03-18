@@ -59,13 +59,13 @@
 </script>
 
 <h1>Create a new event</h1>
-<form>
+<form on:submit|preventDefault={handleCreateEvent}>
     <input type="text" placeholder="Title" bind:value={eventData.title}>
     <input type="text" placeholder="Description" bind:value={eventData.description}>
     <input type="number" placeholder="Duration in seconds" bind:value={eventData.duration}>
     <input type="datetime-local" bind:value={eventData.start}>
     <input type="datetime-local" bind:value={eventData.end}>
-    <button on:click={handleCreateEvent}>Create event</button>
+    <button type="submit">Create event</button>
 </form>
 {#if invalidTimespan}
     <p>Start date must be before end date.</p>
