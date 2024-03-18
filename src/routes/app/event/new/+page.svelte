@@ -2,6 +2,7 @@
     import { user } from "../../../../stores";
     import { db } from "../../../../firebaseConfig";
     import { collection, addDoc } from "firebase/firestore";
+    import { goto } from "$app/navigation";
 
     let eventData = {
         title: '',
@@ -12,6 +13,8 @@
         is_deleted: false,
         host_id: $user!.uid // can user be null here? maybe for a brief moment on initial load?
     }
+
+    let createdEventId: string;
 
     $: console.log(eventData.start, eventData.end);
 
@@ -41,6 +44,7 @@
         try {
             await addDoc(collection(db, "event"), eventData)
             .then((docRef) => {
+                createdEventId = docRef.id;
                 console.log("Event created with ID:", docRef.id);
                 eventData = {
                     ...eventData,
@@ -53,7 +57,11 @@
             });
         } catch (error) {
             console.error("Error creating event:", error);
+            return;
         }
+
+        alert("Event created successfully!");
+        goto(`/event/${createdEventId}`);
     }
 
 </script>
