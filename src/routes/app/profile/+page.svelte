@@ -1,10 +1,10 @@
 <script lang="ts">
     import { user } from '$stores/user';
     import { onMount } from 'svelte';
-    import { db, storage } from '$lib/firebaseConfig';
-    import { getDoc, doc, updateDoc } from 'firebase/firestore';
+    import { storage } from '$lib/firebaseConfig';
     import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-    import type { AuthedUserData } from '$types/user';
+    import type { AuthedUserData } from '$lib/types/user';
+    import { getUserData } from '$lib/services/user';
 
     let userData: AuthedUserData;
     let isLoaded = false;
@@ -24,15 +24,13 @@
     */
     onMount(async () => {
         try {
-            console.log('user', $user?.uid);
-            await getDoc(doc(db, 'user', $user!.uid))
-            .then((docRef) => {
-                userData = docRef.data() as AuthedUserData;
-            })
-            console.log('userData', userData);
-            isLoaded = true;
+            const response = await getUserData($user!.uid);
+            if (response) {
+                userData = response;
+                isLoaded = true;
+            }
         } catch (error) {
-            console.error('Error getting document:', error);
+            console.error('Error getting user data:', error);
         }
 
         try {
