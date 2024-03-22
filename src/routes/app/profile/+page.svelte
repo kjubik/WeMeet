@@ -2,10 +2,11 @@
     import { user } from '$stores/user';
     import { onMount } from 'svelte';
     import { db, storage } from '$lib/firebaseConfig';
-    import { getDoc, doc } from 'firebase/firestore';
+    import { getDoc, doc, updateDoc } from 'firebase/firestore';
     import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+    import type { AuthedUserData } from '$types/user';
 
-    let userData: any;
+    let userData: AuthedUserData;
     let isLoaded = false;
     let uploadedFiles: FileList;
     $: profilePicture = uploadedFiles?.[0];
@@ -26,7 +27,7 @@
             console.log('user', $user?.uid);
             await getDoc(doc(db, 'user', $user!.uid))
             .then((docRef) => {
-                userData = docRef.data();
+                userData = docRef.data() as AuthedUserData;
             })
             console.log('userData', userData);
             isLoaded = true;
