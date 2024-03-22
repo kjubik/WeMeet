@@ -21,7 +21,7 @@ export const getUserData = async (uid: string): Promise<AuthedUserData | null> =
             return null;
         }
     } catch (error) {
-        console.error('Error getting user data:', error);
+        console.error('Error getting document:', error);
         return null;
     }
 };
